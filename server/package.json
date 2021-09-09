@@ -5,7 +5,7 @@
 	"type": "module",
 	"main": "server.js",
 	"scripts": {
-		"dev": "nodemon --delay 500ms server.js"
+		"dev": "nodemon server.js"
 	},
 	"keywords": [
 		"backend"
