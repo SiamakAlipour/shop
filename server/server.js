@@ -3,6 +3,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import { router as productRouter } from './routes/product.js'
+import { router as userRouter } from './routes/user'
 // App config
 dotenv.config()
 const app = express()
@@ -11,6 +12,7 @@ const PORT = process.env.PORT || 3000
 // middlewares
 app.use(express.json())
 app.use('/api/products', productRouter)
+app.use('/api/users', userRouter)
 // DB Config
 mongoose.connect(process.env.DB, () => {
 	console.log('connected to db')

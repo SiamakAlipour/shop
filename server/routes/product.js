@@ -42,3 +42,36 @@ router.get('/:id', async (req, res) => {
 		})
 	}
 })
+
+//  remove a product
+router.delete('/:id', async (req, res) => {
+	try {
+		const removedProduct = await Product.remove({ _id: req.params.id })
+		res.status(200).json(removedProduct)
+	} catch (error) {
+		res.status(400).json({
+			error,
+		})
+	}
+})
+
+// update a product
+router.patch('/:id', async (req, res) => {
+	try {
+		const updatedPost = await Product.updateOne(
+			{ _id: req.params.id },
+			{
+				$set: {
+					name: req.params.name,
+					description: req.params.description,
+					image: req.params.image,
+				},
+			}
+		)
+		res.status(200).json(updatedPost)
+	} catch (error) {
+		res.status(400).json({
+			error,
+		})
+	}
+})
