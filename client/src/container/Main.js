@@ -17,10 +17,10 @@ function Main() {
 			</div>
 			{/* Content */}
 			<div className='main__content'>
-				{/* Sidebar */}
-				<Sidebar />
 				{/* Feed */}
 				<Feed />
+				{/* Sidebar */}
+				<Sidebar />
 			</div>
 		</div>
 	)
