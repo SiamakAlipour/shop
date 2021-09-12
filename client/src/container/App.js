@@ -3,6 +3,8 @@ import './styles/App.scss'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { useSelector } from 'react-redux'
+import Main from './Main'
+import Footer from './Footer'
 function App() {
 	const search = useSelector((state) => state.search)
 	console.log(search)
@@ -22,13 +24,14 @@ function App() {
 						<h1>this is checkout page</h1>
 					</Route>
 					<Route path='/'>
-						<h1>home</h1>
+						<Main />
 					</Route>
 					{/* Navigation */}
 					{/* Slider of new posts */}
 					{/* Products */}
 				</Switch>
 				{/* Footer */}
+				<Footer />
 			</Router>
 		</div>
 	)
