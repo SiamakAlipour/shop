@@ -1,14 +1,13 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef } from 'react'
 import './styles/Header.scss'
 // Material-ui
 import SearchIcon from '@material-ui/icons/Search'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addSearch } from '../store/actions/search'
 import { Link } from 'react-router-dom'
 
 function Header() {
 	const searchInput = useRef()
-	const search = useSelector((state) => state.search)
 	const dispatch = useDispatch()
 	const handleSubmit = (e) => {
 		e.preventDefault()
