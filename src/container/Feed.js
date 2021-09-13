@@ -4,6 +4,9 @@ import './styles/Feed.scss'
 import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
+import Pagination from '@material-ui/lab/Pagination'
+import { FixedSizeList } from 'react-window'
+
 function Feed() {
 	const [catValue, setCatValue] = useState('0')
 	const handleCatValue = (e) => {
@@ -49,7 +52,9 @@ function Feed() {
 				<Product />
 				<Product />
 				<Product />
+				<Product />
 			</div>
+			<Pagination style={{ direction: 'ltr' }} count={10} />
 		</div>
 	)
 }

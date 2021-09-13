@@ -1,8 +1,42 @@
 .product {
 	width: 330px;
-	height: 300px;
-	background: #212121;
+	height: auto;
+	background: white;
 	margin: 10px;
+	position: relative;
+	transition: all ease-in-out 0.4s;
+	border-radius: 3px;
+	box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&:hover {
+		transform: scale(1.02);
+	}
+	&__content {
+		width: 100%;
+		height: 300px;
+		padding: 10px 10px;
+		img {
+			width: 90%;
+			height: 280px;
+			object-fit: cover;
+		}
+	}
+	&__footer {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		padding: 10px 5px;
+		border-top: 2px solid rgb(226, 226, 226);
+		.MuiSvgIcon-root {
+			cursor: pointer;
+		}
+		p {
+			margin: inherit;
+		}
+	}
 }
 
 @media screen and (max-width: 750px) {

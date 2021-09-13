@@ -1,11 +1,14 @@
 @font-face {
 	font-family: 'IRANSans';
 	src: local('IRANSans'),
-		url(./assets/fonts/IRANSans/eot/IRANSansWeb.eot)
+		url('./assets/fonts/IRANSans/eot/IRANSansWeb(FaNum).eot')
 			format('embedded-opentype'),
-		url(./assets/fonts/IRANSans/woff2/IRANSansWeb.woff2) format('woff2'),
-		url(./assets/fonts/IRANSans/woff/IRANSansWeb.woff) format('woff'),
-		url(./assets/fonts/IRANSans/ttf/IRANSansWeb.ttf) format('truetype');
+		url('./assets/fonts/IRANSans/woff2/IRANSansWeb(FaNum).woff2')
+			format('woff2'),
+		url('./assets/fonts/IRANSans/woff/IRANSansWeb(FaNum).woff')
+			format('woff'),
+		url('./assets/fonts/IRANSans/ttf/IRANSansWeb(FaNum).ttf')
+			format('truetype');
 }
 * {
 	box-sizing: border-box;
