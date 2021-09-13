@@ -6,7 +6,7 @@
 	padding: 5px 0;
 	display: flex;
 	justify-content: space-around;
-	align-items: center;
+	align-items: center !important;
 	&__logo {
 		width: 50px;
 		height: 50px;
@@ -37,10 +37,12 @@
 	}
 	&__loginRegister {
 		margin-left: 50px;
+
 		ul {
 			list-style: none;
 			display: flex;
 			align-items: center;
+			margin: inherit;
 			a {
 				text-decoration: none;
 				color: #212121;
