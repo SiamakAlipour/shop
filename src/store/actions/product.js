@@ -6,12 +6,13 @@ import {
 	PRODUCT_GET,
 } from './types'
 
-export const addProduct = (name, description, image) => ({
+export const addProduct = (name, description, image, price) => ({
 	type: PRODUCT_ADD,
 	payload: {
 		name,
 		description,
 		image,
+		price,
 	},
 })
 export const editProduct = (id) => ({

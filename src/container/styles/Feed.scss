@@ -24,14 +24,29 @@
 		align-items: center;
 		justify-content: space-around;
 	}
-	&__products {
+	&__content {
 		width: 96%;
+		min-height: 500px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	&__products {
+		width: 100%;
+		min-height: 500px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-direction: column;
+	}
+	&__productsList {
 		height: auto;
+		width: 100%;
+		min-height: 500px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		flex-wrap: wrap;
 		margin-bottom: 20px;
-		// background-color: red;
 	}
 }
