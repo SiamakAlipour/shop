@@ -16,6 +16,7 @@ function Product({ productImg, price = 1500 }) {
 		<div className='product'>
 			<div className='product__content'>
 				<img src={productImg} alt='' />
+				<p>product title</p>
 			</div>
 			<div className='product__footer '>
 				<p className='text-success'>{priceComma}</p>

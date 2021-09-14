@@ -5,7 +5,6 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import Pagination from '@material-ui/lab/Pagination'
-import { FixedSizeList } from 'react-window'
 
 function Feed() {
 	const [catValue, setCatValue] = useState('0')
