@@ -15,8 +15,16 @@
 	}
 	&__content {
 		width: 100%;
-		height: 300px;
-		padding: 10px 10px;
+		height: auto;
+		padding: 0 10px;
+		padding-top: 10px;
+
+		p {
+			margin-top: 10px;
+			margin-right: 20px;
+			width: 100%;
+			text-align: right;
+		}
 		img {
 			width: 90%;
 			height: 280px;
