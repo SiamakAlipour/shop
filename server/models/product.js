@@ -15,6 +15,10 @@ let productSchema = mongoose.Schema({
 	image: {
 		type: String,
 	},
+	price: {
+		type: Number,
+		required: true,
+	},
 	date: {
 		type: Date,
 		default: Date.now,
