@@ -5,6 +5,18 @@ import {
 	PRODUCTS_ALL,
 	PRODUCT_GET,
 } from './types'
+import axios from 'axios'
+const products = axios.create({
+	baseURL: 'http://localhost:8001/api/products',
+})
+export const allProducts = () => async (dispatch) => {
+	await products.get('/').then((res) => {
+		dispatch({
+			type: PRODUCTS_ALL,
+			payload: res.data,
+		})
+	})
+}
 
 export const addProduct = (name, description, image, price) => ({
 	type: PRODUCT_ADD,
@@ -33,7 +45,4 @@ export const getProduct = (id) => ({
 	payload: {
 		id,
 	},
-})
-export const allProducts = () => ({
-	type: PRODUCTS_ALL,
 })

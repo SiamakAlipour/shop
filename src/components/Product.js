@@ -9,7 +9,6 @@ function Product({ name, image, price }) {
 		var nf = new Intl.NumberFormat()
 		let pc = nf.format(price)
 		setPriceComma(pc)
-		console.log(pc)
 	}, [price])
 
 	return (

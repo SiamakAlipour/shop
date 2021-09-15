@@ -5,18 +5,27 @@ import InputLabel from '@material-ui/core/InputLabel'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem'
 import Pagination from '@material-ui/lab/Pagination'
-import { useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import Loader from 'react-loader-spinner'
-function Feed() {
-	const product = useSelector((state) => state.product)
+import { allProducts } from '../store/actions/product'
+
+function Feed({ allProducts, product }) {
+	const [productItems, setProductItems] = useState()
 	const [catValue, setCatValue] = useState('0')
 	const [loading, setLoading] = useState(true)
+
 	const handleCatValue = (e) => {
 		setCatValue(e.currentTarget.attributes['data-value'].value)
 	}
 	React.useEffect(() => {
-		console.log(product)
-	})
+		allProducts()
+	}, [])
+	React.useEffect(() => {
+		setProductItems(product)
+		if (productItems) {
+			setLoading(false)
+		}
+	}, [product])
 	return (
 		<div className='feed'>
 			<div className='feed__header'>
@@ -56,9 +65,10 @@ function Feed() {
 				) : (
 					<div className='feed__products'>
 						<div className='feed__productsList'>
-							{product.map((product) => {
+							{productItems?.map((product) => {
 								return (
 									<Product
+										key={product._id}
 										name={product.name}
 										image={product.image}
 										price={product.price}
@@ -74,4 +84,12 @@ function Feed() {
 	)
 }
 
-export default Feed
+const mapStateToProps = (state) => ({
+	product: state.product.items,
+})
+const mapDispatchToProps = (dispatch) => {
+	return {
+		allProducts: () => dispatch(allProducts()),
+	}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Feed)

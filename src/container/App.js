@@ -2,12 +2,9 @@ import Header from './Header'
 import './styles/App.scss'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
-import { useSelector } from 'react-redux'
 import Main from './Main'
 import Footer from './Footer'
 function App() {
-	const search = useSelector((state) => state.search)
-	console.log(search)
 	return (
 		<div className='App'>
 			<Router>
