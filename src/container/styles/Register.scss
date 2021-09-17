@@ -1,0 +1,42 @@
+.register {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: -150px;
+	&__form {
+		width: 500px;
+		margin: auto;
+		padding: 20px;
+		.register__input {
+			width: 300px;
+			margin: auto;
+			margin-top: 20px;
+		}
+		.register__formCheck {
+			width: 300px;
+			display: flex;
+			align-items: center;
+			// justify-content: space-around;
+			margin: auto;
+			margin-top: 20px;
+			label {
+				margin-right: 20px;
+			}
+		}
+		button {
+			margin-top: 20px;
+			width: 300px;
+		}
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.register {
+		&__form {
+			width: 100%;
+		}
+	}
+}

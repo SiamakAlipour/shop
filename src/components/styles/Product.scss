@@ -13,17 +13,25 @@
 	&:hover {
 		transform: scale(1.02);
 	}
+	&__name {
+		margin-top: 10px;
+		width: 100%;
+		font-size: 15px;
+		color: rgb(31, 30, 30);
+		text-align: right;
+	}
+	&__description {
+		color: gray;
+		font-size: 13px;
+	}
 	&__content {
 		width: 100%;
 		height: auto;
 		padding: 0 10px;
 		padding-top: 10px;
-
 		p {
-			margin-top: 10px;
-			margin-right: 20px;
-			width: 100%;
 			text-align: right;
+			margin-right: 20px;
 		}
 		img {
 			width: 90%;

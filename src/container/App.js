@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Main from './Main'
 import Footer from './Footer'
+import Register from './Register'
+import Login from './Login'
 function App() {
 	return (
 		<div className='App'>
@@ -12,23 +14,23 @@ function App() {
 				<Header />
 				<Switch>
 					<Route path='/account/register'>
-						<h1>it is register page</h1>
+						<Register />
 					</Route>
 					<Route path='/account/login'>
-						<h1>it is login page</h1>
+						<Login />
 					</Route>
 					<Route path='/checkout'>
 						<h1>this is checkout page</h1>
 					</Route>
 					<Route path='/'>
 						<Main />
+						<Footer />
 					</Route>
 					{/* Navigation */}
 					{/* Slider of new posts */}
 					{/* Products */}
 				</Switch>
 				{/* Footer */}
-				<Footer />
 			</Router>
 		</div>
 	)
