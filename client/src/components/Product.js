@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import './styles/Product.scss'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 
-function Product({ name, image, price }) {
+function Product({ name, image, description, price }) {
 	const [priceComma, setPriceComma] = useState(price)
 	useEffect(() => {
 		var nf = new Intl.NumberFormat()
@@ -15,7 +15,8 @@ function Product({ name, image, price }) {
 		<div className='product'>
 			<div className='product__content'>
 				<img src={image} alt='' />
-				<p>{name}</p>
+				<p className='product__name'>{name}</p>
+				<p className='product__description'>{description}</p>
 			</div>
 			<div className='product__footer '>
 				<p className='text-success'>{priceComma}</p>

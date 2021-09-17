@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Product from '../components/Product'
 import './styles/Feed.scss'
 import InputLabel from '@material-ui/core/InputLabel'
@@ -17,10 +17,10 @@ function Feed({ allProducts, product }) {
 	const handleCatValue = (e) => {
 		setCatValue(e.currentTarget.attributes['data-value'].value)
 	}
-	React.useEffect(() => {
+	useEffect(() => {
 		allProducts()
 	}, [])
-	React.useEffect(() => {
+	useEffect(() => {
 		setProductItems(product)
 		if (productItems) {
 			setLoading(false)
@@ -72,6 +72,7 @@ function Feed({ allProducts, product }) {
 										name={product.name}
 										image={product.image}
 										price={product.price}
+										description={product.description}
 									/>
 								)
 							})}

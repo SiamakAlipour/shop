@@ -7,13 +7,15 @@
 	display: flex;
 	justify-content: space-around;
 	align-items: center !important;
-	&__logo {
+
+	.header__logo {
 		width: 50px;
 		height: 50px;
 		border-radius: 50%;
 		background-color: #212121;
 		margin-right: 50px;
 	}
+
 	&__searchBox {
 		display: flex;
 		align-items: center;

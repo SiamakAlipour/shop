@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import './styles/Header.scss'
 // Material-ui
 import SearchIcon from '@material-ui/icons/Search'
@@ -7,6 +7,7 @@ import { addSearch } from '../store/actions/search'
 import { Link } from 'react-router-dom'
 
 function Header() {
+	const [logged, setLogged] = useState(false)
 	const searchInput = useRef()
 	const dispatch = useDispatch()
 	const handleSubmit = (e) => {
@@ -18,8 +19,8 @@ function Header() {
 	return (
 		<div className='header'>
 			{/* logo */}
-			<Link to='/'>
-				<div className='header__logo'></div>
+			<Link to='/' className='header__logo'>
+				<div className=''></div>
 			</Link>
 
 			{/* searchBox */}
@@ -30,12 +31,21 @@ function Header() {
 			{/* login & register */}
 			<div className='header__loginRegister'>
 				<ul>
-					<Link to='/account/login'>
-						<li>ورود</li>
-					</Link>
-					<Link to='/account/register'>
-						<li>ثبت نام</li>
-					</Link>
+					{!logged ? (
+						<>
+							{' '}
+							<Link to='/account/login'>
+								<li>ورود</li>
+							</Link>
+							<Link to='/account/register'>
+								<li>ثبت نام</li>
+							</Link>{' '}
+						</>
+					) : (
+						<Link to='/account/register'>
+							<li>حساب کاربری</li>
+						</Link>
+					)}
 				</ul>
 			</div>
 		</div>
