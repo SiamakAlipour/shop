@@ -1,4 +1,5 @@
 .feed {
+	width: 100%;
 	flex: 0.72;
 	height: auto;
 	border-radius: 3px;
@@ -7,10 +8,11 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	justify-content: center;
+	// justify-content: flex-st;
 	flex-wrap: wrap;
 	padding-left: 15px;
 	padding-bottom: 20px;
+	margin-top: 10px;
 	&__header {
 		width: 100%;
 		display: flex;
@@ -26,14 +28,14 @@
 	}
 	&__content {
 		width: 96%;
-		min-height: 500px;
+		// min-height: 500px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 	&__products {
 		width: 100%;
-		min-height: 500px;
+		// min-height: 500px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
