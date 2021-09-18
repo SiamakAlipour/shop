@@ -1,10 +1,12 @@
 import React from 'react'
 import './styles/Widget.scss'
-function Widget() {
+function Widget({ content, title, icons }) {
+	console.log(content)
 	return (
 		<div className='widget'>
-			<h3 className='widget__name'>widget name</h3>
-			<div className='widget__content'></div>
+			<h3 className='widget__name'>{title}</h3>
+			{content}
+			<div className='widget__footer'>{icons}</div>
 		</div>
 	)
 }
