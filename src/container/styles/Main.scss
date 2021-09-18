@@ -23,6 +23,7 @@
 		background-color: whitesmoke !important;
 		margin-top: 20px;
 		display: flex;
+		align-items: flex-start;
 		justify-content: center;
 		flex-direction: row;
 		padding: 15px;
@@ -35,6 +36,7 @@
 		height: auto;
 		.main__content {
 			flex-direction: column !important;
+			align-items: center;
 		}
 	}
 }

@@ -12,7 +12,7 @@ import { allProducts } from '../store/actions/product'
 function Feed({ allProducts, product }) {
 	const [productItems, setProductItems] = useState()
 	const [catValue, setCatValue] = useState('0')
-	const [loading, setLoading] = useState(true)
+	const [loading, setLoading] = useState(false)
 
 	const handleCatValue = (e) => {
 		setCatValue(e.currentTarget.attributes['data-value'].value)

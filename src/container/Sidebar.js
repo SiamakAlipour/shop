@@ -1,9 +1,12 @@
 import React from 'react'
+import Widget from '../components/Widget'
 import './styles/Sidebar.scss'
 function Sidebar() {
 	return (
 		<div className='sidebar'>
-			<h1>Sidebar</h1>
+			<Widget />
+			<Widget />
+			<Widget />
 		</div>
 	)
 }
