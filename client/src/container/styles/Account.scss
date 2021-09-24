@@ -1,0 +1,57 @@
+.account {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	background-color: #f5f5f5;
+	overflow: hidden;
+	position: relative;
+	&__sideOptions {
+		flex: 0.15;
+		background-color: white;
+		height: auto;
+		position: absolute;
+		width: 200px;
+		height: 100%;
+		top: 0;
+		right: 0px;
+		> ul {
+			width: 100%;
+			list-style: none;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 0;
+			> a {
+				width: 100%;
+				color: #212121;
+				background-color: #0f5bffb2;
+				padding: 15px;
+				color: whitesmoke;
+
+				text-decoration: none;
+			}
+			> li {
+				width: 100%;
+				background-color: white;
+
+				padding: 15px;
+				cursor: pointer;
+				transition: background-color 0.4s ease-out;
+				&:hover {
+					background-color: #00ff88;
+				}
+			}
+		}
+	}
+	&__content {
+		flex: 0.85;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		margin-right: 350px;
+		margin-top: -40px;
+	}
+}

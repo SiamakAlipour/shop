@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import Widget from '../components/Widget'
 import './styles/Sidebar.scss'
-import TelegramIcon from '@mui/icons-material/Telegram'
-import InstagramIcon from '@mui/icons-material/Instagram'
+
 function Sidebar() {
 	const socialIcons = (
 		<div className='widget__content'>
@@ -28,6 +27,7 @@ function Sidebar() {
 
 	return (
 		<div className='sidebar'>
+			<Widget title={'شبکه های اجتماعی'} content={socialIcons} />
 			<Widget title={'شبکه های اجتماعی'} content={socialIcons} />
 		</div>
 	)

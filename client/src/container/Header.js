@@ -7,7 +7,7 @@ import { addSearch } from '../store/actions/search'
 import { Link } from 'react-router-dom'
 
 function Header() {
-	const [logged, setLogged] = useState(false)
+	const [logged, setLogged] = useState(true)
 	const searchInput = useRef()
 	const dispatch = useDispatch()
 	const handleSubmit = (e) => {
@@ -42,7 +42,7 @@ function Header() {
 							</Link>{' '}
 						</>
 					) : (
-						<Link to='/account/register'>
+						<Link to='/account'>
 							<li>حساب کاربری</li>
 						</Link>
 					)}

@@ -2,7 +2,7 @@ import express from 'express'
 import bcrypt from 'bcryptjs'
 import User from '../models/User'
 import { loginValidation, registerValidation } from '../validation'
-
+import jwt from 'jsonwebtoken'
 export const router = express.Router()
 // register a user
 
@@ -46,5 +46,7 @@ router.post('/login', async (req, res) => {
 	// check if password is correct
 	const validPass = bcrypt.compare(password, userFind.password)
 	if (!validPass) return res.status(400).send('Invalid username or password')
+	// Create and asign token
+	const token = jwt.sign({_id:userFind._id} ,)
 	res.send(userFind)
 })
