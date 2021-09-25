@@ -11,8 +11,10 @@ import { allProducts } from '../store/actions/product'
 
 function Feed({ allProducts, product }) {
 	const [productItems, setProductItems] = useState()
-	const [catValue, setCatValue] = useState('0')
 	const [loading, setLoading] = useState(false)
+	const [currentPage, setCurrentPage] = useState(1)
+	const [postPerPage] = useState(9)
+	const [catValue, setCatValue] = useState('0')
 
 	const handleCatValue = (e) => {
 		setCatValue(e.currentTarget.attributes['data-value'].value)
@@ -26,6 +28,13 @@ function Feed({ allProducts, product }) {
 			setLoading(false)
 		}
 	}, [product])
+
+	const indexOfLastPost = currentPage * postPerPage
+	const indexOfFirstPost = indexOfLastPost - postPerPage
+
+	const currentPosts = productItems?.slice(indexOfFirstPost, indexOfLastPost)
+
+	const paginate = (event, value) => setCurrentPage(value)
 	return (
 		<div className='feed'>
 			<div className='feed__header'>
@@ -65,7 +74,7 @@ function Feed({ allProducts, product }) {
 				) : (
 					<div className='feed__products'>
 						<div className='feed__productsList'>
-							{productItems?.map((product) => {
+							{currentPosts?.map((product) => {
 								return (
 									<Product
 										key={product._id}
@@ -77,7 +86,13 @@ function Feed({ allProducts, product }) {
 								)
 							})}
 						</div>
-						<Pagination style={{ direction: 'ltr' }} count={10} />
+						<Pagination
+							style={{ direction: 'ltr' }}
+							count={Math.ceil(
+								productItems?.length / postPerPage
+							)}
+							onChange={paginate}
+						/>
 					</div>
 				)}
 			</div>
