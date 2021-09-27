@@ -5,7 +5,8 @@ import SearchIcon from '@material-ui/icons/Search'
 import { useDispatch } from 'react-redux'
 import { addSearch } from '../store/actions/search'
 import { Link } from 'react-router-dom'
-
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
+import IconButton from '@mui/material/IconButton'
 function Header() {
 	const [logged, setLogged] = useState(true)
 	const searchInput = useRef()
@@ -42,9 +43,18 @@ function Header() {
 							</Link>{' '}
 						</>
 					) : (
-						<Link to='/account'>
-							<li>حساب کاربری</li>
-						</Link>
+						<>
+							<Link to='/account'>
+								<li>حساب کاربری</li>
+							</Link>
+							<Link to='/checkout'>
+								<li>
+									<IconButton>
+										<ShoppingBasketIcon />
+									</IconButton>
+								</li>
+							</Link>
+						</>
 					)}
 				</ul>
 			</div>

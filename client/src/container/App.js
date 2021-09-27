@@ -7,6 +7,10 @@ import Footer from './Footer'
 import Register from './Register'
 import Login from './Login'
 import Account from './Account'
+import Option from './Option'
+import Sidebar from './Sidebar'
+import Checkout from './Checkout'
+
 function App() {
 	return (
 		<div className='App'>
@@ -21,7 +25,7 @@ function App() {
 						<Login />
 					</Route>
 					<Route path='/checkout'>
-						<h1>this is checkout page</h1>
+						<Checkout />
 					</Route>
 					<Route path='/account'>
 						<Account />
