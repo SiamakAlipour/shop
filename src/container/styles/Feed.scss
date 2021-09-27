@@ -21,10 +21,13 @@
 		align-items: center;
 	}
 	&__category {
-		flex: 0.3;
+		flex: 0.4;
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
+		> label {
+			margin-left: 10px;
+		}
 	}
 	&__content {
 		width: 96%;
@@ -50,5 +53,16 @@
 		justify-content: center;
 		flex-wrap: wrap;
 		margin-bottom: 20px;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	.feed {
+		&__category {
+			flex-direction: column;
+			label {
+				margin-left: 0px;
+			}
+		}
 	}
 }

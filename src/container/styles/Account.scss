@@ -21,19 +21,33 @@
 			flex-direction: column;
 			align-items: center;
 			padding: 0;
-			> a {
+			> .active {
 				width: 100%;
 				color: #212121;
 				background-color: #0f5bffb2;
 				padding: 15px;
 				color: whitesmoke;
-
 				text-decoration: none;
+				&:hover {
+					background-color: #0f5bffb2;
+				}
+			}
+			> a {
+				width: 100%;
+				background-color: white;
+				color: #212121;
+				padding: 15px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: background-color 0.4s ease-out;
+				&:hover {
+					background-color: #00ff88;
+				}
 			}
 			> li {
 				width: 100%;
 				background-color: white;
-
+				color: #212121;
 				padding: 15px;
 				cursor: pointer;
 				transition: background-color 0.4s ease-out;

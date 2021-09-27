@@ -1,0 +1,48 @@
+.checkout {
+	width: 100%;
+	height: 900px;
+	background-color: whitesmoke;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	&__header {
+		background-color: rgb(247, 247, 247);
+		box-shadow: rgb(0 0 0 / 6%) 0 7px 8px 0;
+		width: 100%;
+		height: 100px;
+		padding: 10px;
+		position: sticky;
+		top: 0;
+		right: 0;
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		z-index: 2;
+	}
+	&__wraper {
+		display: flex;
+		flex: 0.3;
+		align-items: center;
+		justify-content: space-around;
+		p {
+			margin-top: 15px;
+		}
+		> button {
+			font-family: IRANSans;
+			direction: ltr;
+		}
+	}
+	&__products {
+		width: 100%;
+	}
+}
+@media screen and (max-width: 960px) {
+	.checkout {
+		&__header {
+			flex-direction: column;
+			button {
+				margin-left: 20px;
+			}
+		}
+	}
+}

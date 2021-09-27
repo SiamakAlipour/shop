@@ -15,7 +15,7 @@ function Account() {
 		<div className='account'>
 			<div className='account__sideOptions'>
 				<ul>
-					<Link to='/'>
+					<Link to='/' className='active'>
 						<li>خانه</li>
 					</Link>
 
@@ -25,7 +25,9 @@ function Account() {
 					{admin ? (
 						<li onClick={() => setOption(1)}>مدیریت کاربران</li>
 					) : null}
-					<li onClick={() => setOption(2)}>سبد خرید</li>
+					<Link to='/checkout'>
+						<li>سبد خرید</li>
+					</Link>
 					<li onClick={() => setOption(3)}>ویرایش حساب کاربری</li>
 				</ul>
 			</div>
