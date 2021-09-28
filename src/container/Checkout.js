@@ -3,8 +3,12 @@ import './styles/Checkout.scss'
 import LoadingButton from '@mui/lab/LoadingButton'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import CheckoutItem from '../components/CheckoutItem'
+import { useSelector, useDispatch } from 'react-redux'
 function Checkout() {
+	const [totalCost, setTotalCost] = useState(0)
 	const [loading, setLoading] = useState(false)
+	const checkout = useSelector((state) => state.checkout)
+	const dispatch = useDispatch()
 	return (
 		<div className='checkout'>
 			<div className='checkout__header'>
@@ -18,31 +22,21 @@ function Checkout() {
 						variant='contained'>
 						نهایی کردن خرید
 					</LoadingButton>
-					<p className='text-success'>مجموع خرید : {250000}</p>
+					<p className='text-success'>مجموع خرید : {totalCost}</p>
 				</div>
 			</div>
 			<div className='container'>
 				<div className='checkout__products'>
-					<CheckoutItem
-						name={'بست کمری'}
-						description={'بست عالی'}
-						unitCost={25000}
-					/>
-					<CheckoutItem
-						name={'بست فلزی'}
-						description={'فلز عالی'}
-						unitCost={15000}
-					/>
-					<CheckoutItem
-						name={'روغن ترمز'}
-						description={'بهترین کیفیت روغن ترمز'}
-						unitCost={25000}
-					/>
-					<CheckoutItem
-						name={'بست کمری'}
-						description={'بست عالی'}
-						unitCost={25000}
-					/>
+					{checkout?.map((checkout, index) => (
+						<CheckoutItem
+							id={checkout.id}
+							key={index}
+							name={checkout.name}
+							description={checkout.description}
+							unitCost={checkout.unitPrice}
+							count={checkout.count}
+						/>
+					))}
 				</div>
 			</div>
 		</div>

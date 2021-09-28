@@ -7,7 +7,7 @@ import {
 } from './types'
 import axios from 'axios'
 const products = axios.create({
-	baseURL: 'http://localhost:8001/api/products',
+	baseURL: 'http://127.0.0.1:8001/api/products',
 })
 export const allProducts = () => async (dispatch) => {
 	await products.get('/').then((res) => {

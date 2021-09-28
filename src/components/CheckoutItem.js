@@ -2,10 +2,13 @@ import React, { useState, useRef, useEffect } from 'react'
 import './styles/CheckoutItem.scss'
 import DeleteIcon from '@mui/icons-material/Delete'
 import IconButton from '@mui/material/IconButton'
-function CheckoutItem({ name, description, unitCost }) {
+import { useDispatch } from 'react-redux'
+import { removeCheckoutItem } from '../store/actions/checkout'
+function CheckoutItem({ name, description, unitCost, id }) {
 	const countInput = useRef()
 	const [totalCost, setTotalCost] = useState(unitCost)
 	const [count, setCount] = useState(1)
+	const dispatch = useDispatch()
 	const handleTotalCost = (e) => {
 		let totalCostValue = countInput.current.value * unitCost
 		setCount(e.target.value)
@@ -41,7 +44,9 @@ function CheckoutItem({ name, description, unitCost }) {
 				/>
 
 				{/* delete */}
-				<IconButton color='error'>
+				<IconButton
+					color='error'
+					onClick={() => dispatch(removeCheckoutItem(id))}>
 					<DeleteIcon />
 				</IconButton>
 			</div>
