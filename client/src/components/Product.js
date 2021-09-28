@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.css'
 import './styles/Product.scss'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-
-function Product({ name, image, description, price }) {
+import IconButton from '@mui/material/IconButton'
+import { useDispatch } from 'react-redux'
+import { addCheckout } from '../store/actions/checkout'
+function Product({ id, name, image, description, price }) {
 	const [priceComma, setPriceComma] = useState(price)
 	useEffect(() => {
 		var nf = new Intl.NumberFormat()
 		let pc = nf.format(price)
 		setPriceComma(pc)
 	}, [price])
+	const dispatch = useDispatch()
 
 	return (
 		<div className='product'>
@@ -20,7 +23,13 @@ function Product({ name, image, description, price }) {
 			</div>
 			<div className='product__footer '>
 				<p className='text-success'>{priceComma}</p>
-				<ShoppingCartIcon />
+				<IconButton
+					color='inherit'
+					onClick={() =>
+						dispatch(addCheckout(id, name, description, price))
+					}>
+					<ShoppingCartIcon />
+				</IconButton>
 			</div>
 		</div>
 	)

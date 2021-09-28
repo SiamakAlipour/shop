@@ -8,6 +8,7 @@ import Pagination from '@material-ui/lab/Pagination'
 import { connect } from 'react-redux'
 import Loader from 'react-loader-spinner'
 import { allProducts } from '../store/actions/product'
+import { PRODUCT_ADD } from '../store/actions/types'
 
 function Feed({ allProducts, product }) {
 	const [productItems, setProductItems] = useState()
@@ -33,7 +34,9 @@ function Feed({ allProducts, product }) {
 	const indexOfFirstPost = indexOfLastPost - postPerPage
 
 	const currentPosts = productItems?.slice(indexOfFirstPost, indexOfLastPost)
-
+	useEffect(() => {
+		console.log(currentPosts)
+	})
 	const paginate = (event, value) => setCurrentPage(value)
 	return (
 		<div className='feed'>
@@ -78,6 +81,7 @@ function Feed({ allProducts, product }) {
 								return (
 									<Product
 										key={product._id}
+										id={product._id}
 										name={product.name}
 										image={product.image}
 										price={product.price}
