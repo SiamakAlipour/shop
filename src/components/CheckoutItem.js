@@ -1,9 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import './styles/CheckoutItem.scss'
 import DeleteIcon from '@mui/icons-material/Delete'
 import IconButton from '@mui/material/IconButton'
 function CheckoutItem({ name, description, unitCost }) {
-	const [totalCost, setTotalCost] = useState('0')
+	const countInput = useRef()
+	const [totalCost, setTotalCost] = useState(unitCost)
+	const [count, setCount] = useState(1)
+	const handleTotalCost = (e) => {
+		let totalCostValue = countInput.current.value * unitCost
+		setCount(e.target.value)
+		setTotalCost(totalCostValue)
+	}
+
 	return (
 		<div className='checkoutItem'>
 			<div className='checkoutItem__info'>
@@ -23,7 +31,14 @@ function CheckoutItem({ name, description, unitCost }) {
 				</div>
 				{/* edit count */}
 
-				<input type='number' min='0' className='form-control' />
+				<input
+					type='number'
+					min='0'
+					className='form-control'
+					ref={countInput}
+					value={count}
+					onChange={handleTotalCost}
+				/>
 
 				{/* delete */}
 				<IconButton color='error'>
