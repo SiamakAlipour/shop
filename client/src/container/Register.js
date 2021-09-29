@@ -32,7 +32,8 @@ function Register() {
 							id='rememberCheckBox'
 						/>
 						<label htmlFor='rememberCheckBox'>
-							<a href=''>قوانین</a> را قبول دارم
+							{/* eslint-disable-next-line jsx-a11y/anchor-is-valid  */}
+							<a href='#'>قوانین</a> را قبول دارم
 						</label>
 					</div>
 					<button className='btn btn-primary'>ثبت نام</button>

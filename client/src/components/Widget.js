@@ -1,7 +1,6 @@
 import React from 'react'
 import './styles/Widget.scss'
 function Widget({ content, title, icons }) {
-	console.log(content)
 	return (
 		<div className='widget'>
 			<h3 className='widget__name'>{title}</h3>

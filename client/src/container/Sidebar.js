@@ -7,6 +7,7 @@ function Sidebar() {
 		<div className='widget__content'>
 			<p>ما را در شبکه های اجتماعی دنبال کنید</p>
 			<div className='widget__icons'>
+				{/* eslint-disable-next-line jsx-a11y/anchor-is-valid  */}
 				<a href='#'>
 					<img
 						className='widget__icons--style'
@@ -14,6 +15,7 @@ function Sidebar() {
 						alt=''
 					/>
 				</a>
+				{/* eslint-disable-next-line jsx-a11y/anchor-is-valid  */}
 				<a href='#'>
 					<img
 						className='widget__icons--style'

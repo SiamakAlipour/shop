@@ -22,12 +22,14 @@ function Feed({ allProducts, product }) {
 	}
 	useEffect(() => {
 		allProducts()
+		// eslint-disable-next-line
 	}, [])
 	useEffect(() => {
 		setProductItems(product)
 		if (productItems) {
 			setLoading(false)
 		}
+		// eslint-disable-next-line
 	}, [product])
 
 	const indexOfLastPost = currentPage * postPerPage

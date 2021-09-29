@@ -1,4 +1,9 @@
-import { CHECKOUT_ADD, CHECKOUT_COUNT, CHECKOUT_REMOVE } from './types'
+import {
+	CHECKOUT_ADD,
+	CHECKOUT_COUNT,
+	CHECKOUT_REMOVE,
+	CHECKOUT_TOTALCOST,
+} from './types'
 
 export const addCheckout = (id, name, description, unitPrice) => ({
 	type: CHECKOUT_ADD,
@@ -17,7 +22,13 @@ export const checkoutCount = (id, count) => ({
 		count,
 	},
 })
-
+export const checkoutTotalCost = (id, totalCost) => ({
+	type: CHECKOUT_TOTALCOST,
+	payload: {
+		id,
+		totalCost,
+	},
+})
 export const removeCheckoutItem = (id) => ({
 	type: CHECKOUT_REMOVE,
 	payload: {

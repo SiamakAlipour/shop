@@ -1,5 +1,9 @@
-import { v4 } from 'uuid'
-import { CHECKOUT_ADD, CHECKOUT_COUNT, CHECKOUT_REMOVE } from '../actions/types'
+import {
+	CHECKOUT_ADD,
+	CHECKOUT_COUNT,
+	CHECKOUT_REMOVE,
+	CHECKOUT_TOTALCOST,
+} from '../actions/types'
 
 const initialState = []
 
@@ -13,6 +17,8 @@ const checkoutReducer = (state = initialState, action) => {
 				name: payload.name,
 				description: payload.description,
 				unitPrice: payload.unitPrice,
+				totalCost: payload.unitPrice,
+				count: 1,
 			})
 			return state
 		case CHECKOUT_COUNT:
@@ -20,6 +26,12 @@ const checkoutReducer = (state = initialState, action) => {
 				state.id !== payload.id
 					? state
 					: { ...state, count: payload.count }
+			)
+		case CHECKOUT_TOTALCOST:
+			return state.map((state) =>
+				state.id !== payload.id
+					? state
+					: { ...state, totalCost: payload.totalCost }
 			)
 		case CHECKOUT_REMOVE:
 			return state.filter((state) => state.id !== payload.id)
