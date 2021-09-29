@@ -3,6 +3,8 @@ import bcrypt from 'bcryptjs'
 import User from '../models/User'
 import { loginValidation, registerValidation } from '../validation'
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv'
+dotenv.config()
 export const router = express.Router()
 // register a user
 
@@ -44,9 +46,14 @@ router.post('/login', async (req, res) => {
 	const userFind = await User.findOne({ username })
 	if (!userFind) return res.status(400).send('Invalid username or password')
 	// check if password is correct
-	const validPass = bcrypt.compare(password, userFind.password)
+	const validPass = await bcrypt.compare(password, userFind.password)
 	if (!validPass) return res.status(400).send('Invalid username or password')
 	// Create and asign token
-	const token = jwt.sign({_id:userFind._id} ,)
-	res.send(userFind)
+	const token = jwt.sign({ _id: userFind._id }, process.env.SECRET)
+	res.header('auth-header', token).send({
+		id: userFind._id,
+		username: userFind.username,
+		password: userFind.password,
+		token,
+	})
 })

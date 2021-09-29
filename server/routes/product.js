@@ -1,5 +1,6 @@
 import express from 'express'
 import Product from '../models/Product.js'
+import verifyToken from './verifyToken.js'
 
 export const router = express.Router()
 // Add product
@@ -21,7 +22,7 @@ router.post('/', async (req, res) => {
 })
 
 // get all products
-router.get('/', async (req, res) => {
+router.get('/', verifyToken, async (req, res) => {
 	try {
 		const products = await Product.find()
 		res.status(200).json(products)

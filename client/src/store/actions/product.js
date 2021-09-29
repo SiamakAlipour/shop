@@ -6,11 +6,12 @@ import {
 	PRODUCT_GET,
 } from './types'
 import axios from 'axios'
+import authHeader from '../../service/auth-header'
 const products = axios.create({
 	baseURL: 'http://127.0.0.1:8001/api/products',
 })
 export const allProducts = () => async (dispatch) => {
-	await products.get('/').then((res) => {
+	await products.get('/', { headers: authHeader() }).then((res) => {
 		dispatch({
 			type: PRODUCTS_ALL,
 			payload: res.data,

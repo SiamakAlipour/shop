@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Ads from '../components/Ads'
 import Sidebar from './Sidebar'
 import Feed from './Feed'
 import './styles/Main.scss'
+import { userService } from '../service/user.service'
+import axios from 'axios'
 function Main() {
+	useEffect(() => {
+		axios
+			.post('http://127.0.0.1:8001/api/users/login', {
+				username: 'siamak',
+				password: '13801380',
+			})
+			.then((res) => {
+				localStorage.setItem('user', JSON.stringify(res.data))
+			})
+		let x = localStorage.getItem('user')
+		console.log(x)
+	}, [])
+
 	return (
 		<div className='main'>
 			{/*! ADS & Banner | Main Header */}

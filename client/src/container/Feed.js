@@ -36,9 +36,7 @@ function Feed({ allProducts, product }) {
 	const indexOfFirstPost = indexOfLastPost - postPerPage
 
 	const currentPosts = productItems?.slice(indexOfFirstPost, indexOfLastPost)
-	useEffect(() => {
-		console.log(currentPosts)
-	})
+
 	const paginate = (event, value) => setCurrentPage(value)
 	return (
 		<div className='feed'>
