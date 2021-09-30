@@ -10,13 +10,16 @@ import Account from './Account'
 import Option from './Option'
 import Sidebar from './Sidebar'
 import Checkout from './Checkout'
-
+import Message from '../components/Message'
+import { useSelector } from 'react-redux'
 function App() {
+	const [info, message] = useSelector((state) => state.message)
 	return (
 		<div className='App'>
 			<Router>
 				{/* Header */}
 				<Header />
+				<Message info={info} message={message} />
 				<Switch>
 					<Route path='/account/register'>
 						<Register />

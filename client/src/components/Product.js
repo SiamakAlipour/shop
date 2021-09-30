@@ -5,6 +5,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import IconButton from '@mui/material/IconButton'
 import { useDispatch } from 'react-redux'
 import { addCheckout } from '../store/actions/checkout'
+import { addMessage } from '../store/actions/message'
 function Product({ id, name, image, description, price }) {
 	const [priceComma, setPriceComma] = useState(price)
 	useEffect(() => {
@@ -25,9 +26,12 @@ function Product({ id, name, image, description, price }) {
 				<p className='text-success'>{priceComma}</p>
 				<IconButton
 					color='inherit'
-					onClick={() =>
+					onClick={() => {
 						dispatch(addCheckout(id, name, description, price))
-					}>
+						dispatch(
+							addMessage('alert-success', 'به سبد کالا اضافه شد')
+						)
+					}}>
 					<ShoppingCartIcon />
 				</IconButton>
 			</div>

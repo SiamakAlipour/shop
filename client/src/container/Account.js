@@ -5,6 +5,7 @@ import Option from './Option'
 import { Link } from 'react-router-dom'
 
 import './styles/Account.scss'
+import { userService } from '../service/user.service'
 function Account() {
 	const [option, setOption] = useState(0)
 	const [admin, setAdmin] = useState(true)
@@ -29,6 +30,9 @@ function Account() {
 						<li>سبد خرید</li>
 					</Link>
 					<li onClick={() => setOption(3)}>ویرایش حساب کاربری</li>
+					<li onClick={() => userService.logout()}>
+						خروج از حساب کاربری
+					</li>
 				</ul>
 			</div>
 			<div className='account__content'>

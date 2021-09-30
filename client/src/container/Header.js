@@ -1,13 +1,15 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import './styles/Header.scss'
 // Material-ui
 import SearchIcon from '@material-ui/icons/Search'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addSearch } from '../store/actions/search'
 import { Link } from 'react-router-dom'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
 import IconButton from '@mui/material/IconButton'
+import authHeader from '../service/auth-header'
 function Header() {
+	const checkout = useSelector((state) => state.checkout)
 	const [logged, setLogged] = useState(true)
 	const searchInput = useRef()
 	const dispatch = useDispatch()
@@ -49,8 +51,13 @@ function Header() {
 							</Link>
 							<Link to='/checkout'>
 								<li>
-									<IconButton>
+									<IconButton className='header__basketIcon'>
 										<ShoppingBasketIcon />
+										{checkout.length === 0 ? null : (
+											<div className='header__basketBadge'>
+												{checkout.length}
+											</div>
+										)}
 									</IconButton>
 								</li>
 							</Link>

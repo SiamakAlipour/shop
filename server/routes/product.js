@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
 })
 
 // get all products
-router.get('/', verifyToken, async (req, res) => {
+router.get('/', async (req, res) => {
 	try {
 		const products = await Product.find()
 		res.status(200).json(products)

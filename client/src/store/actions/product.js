@@ -11,7 +11,7 @@ const products = axios.create({
 	baseURL: 'http://127.0.0.1:8001/api/products',
 })
 export const allProducts = () => async (dispatch) => {
-	await products.get('/', { headers: authHeader() }).then((res) => {
+	await products.get('/').then((res) => {
 		dispatch({
 			type: PRODUCTS_ALL,
 			payload: res.data,

@@ -2,17 +2,20 @@ import React, { useState, useRef, useEffect } from 'react'
 import './styles/CheckoutItem.scss'
 import DeleteIcon from '@mui/icons-material/Delete'
 import IconButton from '@mui/material/IconButton'
-import { useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {
 	removeCheckoutItem,
 	checkoutCount,
 	checkoutTotalCost,
 } from '../store/actions/checkout'
+import { addMessage } from '../store/actions/message'
+import Message from './Message'
 
 function CheckoutItem({ id, name, description, unitCost, totalCost, countCh }) {
 	const countInput = useRef()
 	const [count, setCount] = useState(countCh)
 	const dispatch = useDispatch()
+	const [info, message] = useSelector((state) => state.message)
 	const handleTotalCost = (e) => {
 		let totalCostValue = countInput.current.value * unitCost
 		dispatch(checkoutCount(id, parseInt(countInput.current.value)))
@@ -55,7 +58,14 @@ function CheckoutItem({ id, name, description, unitCost, totalCost, countCh }) {
 				{/* delete */}
 				<IconButton
 					color='error'
-					onClick={() => dispatch(removeCheckoutItem(id))}>
+					onClick={() => {
+						dispatch(removeCheckoutItem(id))
+						dispatch(
+							dispatch(
+								addMessage('alert-danger', 'از سبد کالا حذف شد')
+							)
+						)
+					}}>
 					<DeleteIcon />
 				</IconButton>
 			</div>
