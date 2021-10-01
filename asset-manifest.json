@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/shop/static/css/main.a24a17bd.chunk.css",
+    "main.css": "/shop/static/css/main.74b464a5.chunk.css",
     "main.js": "/shop/static/js/main.85323b94.chunk.js",
     "main.js.map": "/shop/static/js/main.85323b94.chunk.js.map",
     "runtime-main.js": "/shop/static/js/runtime-main.1ac97f15.js",
@@ -12,7 +12,7 @@
     "static/js/3.17fcc091.chunk.js.map": "/shop/static/js/3.17fcc091.chunk.js.map",
     "index.html": "/shop/index.html",
     "static/css/2.53150396.chunk.css.map": "/shop/static/css/2.53150396.chunk.css.map",
-    "static/css/main.a24a17bd.chunk.css.map": "/shop/static/css/main.a24a17bd.chunk.css.map",
+    "static/css/main.74b464a5.chunk.css.map": "/shop/static/css/main.74b464a5.chunk.css.map",
     "static/js/2.e2420d69.chunk.js.LICENSE.txt": "/shop/static/js/2.e2420d69.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/shop/static/media/IRANSansWeb(FaNum).cfda181b.ttf"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.1ac97f15.js",
     "static/css/2.53150396.chunk.css",
     "static/js/2.e2420d69.chunk.js",
-    "static/css/main.a24a17bd.chunk.css",
+    "static/css/main.74b464a5.chunk.css",
     "static/js/main.85323b94.chunk.js"
   ]
 }
