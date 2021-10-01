@@ -22,30 +22,38 @@ function Header() {
 	return (
 		<div className='header'>
 			{/* logo */}
-			<Link to='/' className='header__logo'>
-				<div className=''></div>
-			</Link>
+			<div className='header__wrapper'>
+				{/* searchBox */}
+				<form className='header__searchBox' onSubmit={handleSubmit}>
+					<input
+						type='text'
+						placeholder='جستجو...'
+						ref={searchInput}
+					/>
+					<SearchIcon />
+				</form>
+			</div>
 
-			{/* searchBox */}
-			<form className='header__searchBox' onSubmit={handleSubmit}>
-				<input type='text' placeholder='جستجو...' ref={searchInput} />
-				<SearchIcon />
-			</form>
 			{/* login & register */}
 			<div className='header__loginRegister'>
 				<ul>
 					{!logged ? (
 						<>
-							{' '}
+							<Link to='/'>
+								<li>خانه</li>
+							</Link>
 							<Link to='/account/login'>
 								<li>ورود</li>
 							</Link>
 							<Link to='/account/register'>
 								<li>ثبت نام</li>
-							</Link>{' '}
+							</Link>
 						</>
 					) : (
 						<>
+							<Link to='/'>
+								<li>خانه</li>
+							</Link>
 							<Link to='/account'>
 								<li>حساب کاربری</li>
 							</Link>

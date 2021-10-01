@@ -4,7 +4,11 @@ import './styles/Product.scss'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import IconButton from '@mui/material/IconButton'
 import { useSelector, useDispatch } from 'react-redux'
-import { addCheckout, checkoutCount } from '../store/actions/checkout'
+import {
+	addCheckout,
+	checkoutCount,
+	checkoutTotalCost,
+} from '../store/actions/checkout'
 import { addMessage } from '../store/actions/message'
 function Product({ id, name, image, description, price }) {
 	const [priceComma, setPriceComma] = useState(price)
@@ -17,14 +21,21 @@ function Product({ id, name, image, description, price }) {
 	const dispatch = useDispatch()
 	const handleCheckout = () => {
 		if (checkout.some((checkout) => checkout.id === id)) {
-			let checkoutItem = checkout.findIndex((item) => item.id === id)
-			console.log(checkoutItem)
-			dispatch(checkoutCount(id, checkout[checkoutItem].count + 1))
+			let checkoutItemIndex = checkout.findIndex((item) => item.id === id)
+			console.log(checkoutItemIndex)
+			dispatch(checkoutCount(id, checkout[checkoutItemIndex].count + 1))
+			dispatch(
+				checkoutTotalCost(
+					id,
+					checkout[checkoutItemIndex].unitPrice *
+						(checkout[checkoutItemIndex].count + 1)
+				)
+			)
 			dispatch(
 				addMessage(
 					'alert-success',
 					`تعداد کالا به ${
-						checkout[checkoutItem].count + 1
+						checkout[checkoutItemIndex].count + 1
 					} افزایش یافت`
 				)
 			)

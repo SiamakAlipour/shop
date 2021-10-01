@@ -15,7 +15,7 @@ function Message({ info, message }) {
 			<div className={`alert ${info} message`}>
 				{message}
 				<IconButton
-					color='error'
+					color='inherit'
 					onClick={() => dispatch(removeMessage())}>
 					<HighlightOffIcon />
 				</IconButton>
