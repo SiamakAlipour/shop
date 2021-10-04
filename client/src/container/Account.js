@@ -6,12 +6,16 @@ import { Link } from 'react-router-dom'
 
 import './styles/Account.scss'
 import { userService } from '../service/user.service'
-function Account() {
+import { Redirect } from 'react-router'
+import { useSelector, connect } from 'react-redux'
+function Account({ isLoggedIn }) {
 	const [option, setOption] = useState(0)
 	const [admin, setAdmin] = useState(true)
-	React.useEffect(() => {
-		console.log(option)
-	})
+
+	if (!isLoggedIn) {
+		console.log('account')
+		return <Redirect to='/account/login' />
+	}
 	return (
 		<div className='account'>
 			<div className='account__sideOptions'>
@@ -30,7 +34,11 @@ function Account() {
 						<li>سبد خرید</li>
 					</Link>
 					<li onClick={() => setOption(3)}>ویرایش حساب کاربری</li>
-					<li onClick={() => userService.logout()}>
+					<li
+						onClick={() => {
+							userService.logout()
+							window.location.reload()
+						}}>
 						خروج از حساب کاربری
 					</li>
 				</ul>
@@ -41,5 +49,10 @@ function Account() {
 		</div>
 	)
 }
-
-export default Account
+const mapStateToProps = (state) => {
+	const { isLoggedIn } = state.auth
+	return {
+		isLoggedIn,
+	}
+}
+export default connect(mapStateToProps)(Account)

@@ -1,5 +1,6 @@
 // Search
 export const SEARCH_ADD = 'SEARCH_ADD'
+export const SEARCH_CLEAR = 'SEARCH_CLEAR'
 // Product
 export const PRODUCT_ADD = 'PRODUCT_ADD'
 export const PRODUCT_EDIT = 'PRODUCT_EDIT'
@@ -15,3 +16,9 @@ export const CHECKOUT_TOTALCOST = 'CHECKOUT_TOTALCOST'
 // Message
 export const MESSAGE_ADD = 'MESSAGE_ADD'
 export const MESSAGE_REMOVE = 'MESSAGE_REMOVE'
+// Auth
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILED = 'LOGIN_FAILED'
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+export const REGISTER_FAILED = 'REGISTER_FAILED'
+export const LOGOUT = 'LOGOUT'

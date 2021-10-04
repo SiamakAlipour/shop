@@ -7,10 +7,10 @@ import { addSearch } from '../store/actions/search'
 import { Link } from 'react-router-dom'
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
 import IconButton from '@mui/material/IconButton'
-import authHeader from '../service/auth-header'
+// import authHeader from '../service/auth-header'
 function Header() {
 	const checkout = useSelector((state) => state.checkout)
-	const [logged, setLogged] = useState(true)
+	const { isLoggedIn } = useSelector((state) => state.auth)
 	const searchInput = useRef()
 	const dispatch = useDispatch()
 	const handleSubmit = (e) => {
@@ -37,7 +37,7 @@ function Header() {
 			{/* login & register */}
 			<div className='header__loginRegister'>
 				<ul>
-					{!logged ? (
+					{!isLoggedIn ? (
 						<>
 							<Link to='/'>
 								<li>خانه</li>

@@ -3,13 +3,13 @@ import './styles/Checkout.scss'
 import LoadingButton from '@mui/lab/LoadingButton'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import CheckoutItem from '../components/CheckoutItem'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 function Checkout() {
 	const [totalCost, setTotalCost] = useState(0)
 	const [loading, setLoading] = useState(false)
 
 	const checkout = useSelector((state) => state.checkout)
-	const dispatch = useDispatch()
+
 	const handlePrice = (price) => {
 		var nf = new Intl.NumberFormat()
 		let pc = nf.format(price)
@@ -26,9 +26,7 @@ function Checkout() {
 			setTotalCost(handlePrice(temp))
 		}
 	}, [checkout])
-	useEffect(() => {
-		checkout.map((checkout) => console.log(checkout))
-	}, [checkout])
+
 	return (
 		<div className='checkout'>
 			<div className='checkout__header'>

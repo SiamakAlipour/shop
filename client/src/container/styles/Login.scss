@@ -5,11 +5,15 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	margin-top: -150px;
+	margin-top: -100px;
 	&__form {
 		width: 500px;
 		margin: auto;
 		padding: 20px;
+		.login__text {
+			font-size: 12px;
+			margin-top: 5px;
+		}
 		.login__input {
 			width: 300px;
 			margin: auto;
@@ -27,8 +31,15 @@
 			}
 		}
 		button {
-			margin-top: 20px;
 			width: 300px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: auto;
+			margin-top: 20px;
+			span:first-child {
+				margin-left: 10px;
+			}
 		}
 	}
 }

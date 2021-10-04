@@ -13,9 +13,9 @@
 		"@mui/lab": "^5.0.0-alpha.48",
 		"@mui/material": "^5.0.0",
 		"@testing-library/jest-dom": "^5.14.1",
-		"@testing-library/react": "^11.2.7",
 		"@testing-library/user-event": "^12.8.3",
 		"bootstrap": "^5.1.0",
+		"formik": "^2.2.9",
 		"gh-pages": "^3.2.3",
 		"lodash": "^4.17.21",
 		"react": "^17.0.2",
@@ -25,11 +25,15 @@
 		"react-redux": "^7.2.5",
 		"react-router-dom": "^5.3.0",
 		"react-scripts": "4.0.3",
+		"react-validation": "^3.0.7",
 		"react-window": "^1.8.6",
+		"redux-devtools-extension": "^2.13.9",
 		"redux-thunk": "^2.3.0",
 		"sass": "^1.39.2",
 		"uuid": "^8.3.2",
-		"web-vitals": "^1.1.2"
+		"validator": "^13.6.0",
+		"web-vitals": "^1.1.2",
+		"yup": "^0.32.9"
 	},
 	"scripts": {
 		"start": "react-scripts start",
@@ -59,5 +63,10 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
+	},
+	"devDependencies": {
+		"@testing-library/react": "^12.1.1",
+		"jest-dom": "^4.0.0",
+		"react-test-render": "^1.1.2"
 	}
 }
