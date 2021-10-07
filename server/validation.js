@@ -13,8 +13,8 @@ export const registerValidation = (data) => {
 }
 export const loginValidation = (data) => {
 	const schema = Joi.object({
-		username: Joi.string().min(6).max(30).required(),
-		password: Joi.string().min(6).required(),
+		username: Joi.string().required(),
+		password: Joi.string().required(),
 	})
 	return schema.validate(data)
 }

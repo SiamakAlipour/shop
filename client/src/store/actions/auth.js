@@ -18,19 +18,14 @@ export const register = (username, password, email) => (dispatch) => {
 				type: MESSAGE_ADD,
 				payload: {
 					info: 'alert-success',
-					message: 'ثبت نام شما با موفقیت انجام شد',
+					message: res.data.message,
 				},
 			})
 
 			return Promise.resolve()
 		},
 		(error) => {
-			const message =
-				(error.response &&
-					error.response.data &&
-					error.response.data.message) ||
-				error.message ||
-				error.toString()
+			const message = error.response.data
 
 			dispatch({
 				type: REGISTER_FAILED,
@@ -40,7 +35,7 @@ export const register = (username, password, email) => (dispatch) => {
 				type: MESSAGE_ADD,
 				payload: {
 					info: 'alert-danger',
-					message,
+					message: message,
 				},
 			})
 			return Promise.reject()
@@ -51,6 +46,7 @@ export const register = (username, password, email) => (dispatch) => {
 export const login = (username, password) => (dispatch) => {
 	return userService.login(username, password).then(
 		(data) => {
+			console.log('Userservice login')
 			dispatch({
 				type: LOGIN_SUCCESS,
 				payload: {
@@ -60,12 +56,6 @@ export const login = (username, password) => (dispatch) => {
 			return Promise.resolve()
 		},
 		(error) => {
-			const message =
-				(error.response &&
-					error.response.data &&
-					error.response.data.message) ||
-				error.message ||
-				error.toString()
 			dispatch({
 				type: LOGIN_FAILED,
 			})
@@ -73,7 +63,7 @@ export const login = (username, password) => (dispatch) => {
 				type: MESSAGE_ADD,
 				payload: {
 					info: 'alert-danger',
-					message,
+					message: error.response.data,
 				},
 			})
 			return Promise.reject()

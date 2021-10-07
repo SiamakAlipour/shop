@@ -2,34 +2,34 @@ import React, { useState, useRef } from 'react'
 import * as Yup from 'yup'
 import { Formik, Form, Field } from 'formik'
 import './styles/Register.scss'
-import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../store/actions/auth'
 import { addMessage } from '../store/actions/message'
 function Register() {
-	const [loading, setLoading] = useState(false)
-
+	const history = useHistory()
+	const [info, message] = useSelector((state) => state.message)
 	const dispatch = useDispatch()
 	const handleRegister = (value) => {
-		setLoading(true)
 		dispatch(register(value.username, value.password, value.email))
 			.then(() => {
-				console.log('test')
-				addMessage('alert-success', 'ثبت نام شما با موفقیت انجام شد')
+				history.push('/account/login')
 			})
-			.catch(() => {
-				setLoading(false)
-			})
+			.catch(() => {})
 	}
+
 	const SignupSchema = Yup.object().shape({
 		username: Yup.string('نام کاربری را وارد نمایید')
 
-			.min(2, 'نام کاربری حداقل باید 2 حرف باشد.')
+			.min(6, 'نام کاربری حداقل باید 6 حرف باشد.')
+
+			.max(30, 'نام کاربری حداکثر باید 30 حرف باشد.')
 
 			.required('لطفا نام کاربری را وارد نمایید'),
 
 		password: Yup.string('رمز عبور را وارد نمایید')
 
-			.min(2, 'رمز عبور حداقل باید 2 حرف باشد.')
+			.min(8, 'رمز عبور حداقل باید 8 حرف باشد.')
 
 			.required('لطفا رمز عبور را وارد نمایید'),
 
@@ -49,7 +49,9 @@ function Register() {
 			.email('ایمیل معتبر وارد نمایید')
 
 			.required('لطفا ایمیل را وارد نمایید'),
-		checkbox: Yup.boolean().oneOf([true], 'قوانین را باید قبول کنید!'),
+		checkbox: Yup.boolean()
+			.oneOf([true], 'قوانین را باید قبول کنید!')
+			.required('قوانین را باید قبول کنید!'),
 	})
 	return (
 		<div className='register'>
@@ -126,11 +128,8 @@ function Register() {
 								</div>
 							) : null}
 							<button type='submit' className='btn btn-primary'>
-								{loading && (
-									<span className='spinner-border spinner-border-sm'></span>
-								)}
 								<span>ثبت نام</span>
-							</button>{' '}
+							</button>
 						</Form>
 					)}
 				</Formik>

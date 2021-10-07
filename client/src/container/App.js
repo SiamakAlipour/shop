@@ -15,8 +15,8 @@ import { useSelector } from 'react-redux'
 function App() {
 	const [info, message] = useSelector((state) => state.message)
 	return (
-		<div className='App'>
-			<Router>
+		<Router>
+			<div className='App'>
 				{/* Header */}
 				<Header />
 				<Message info={info} message={message} />
@@ -42,8 +42,8 @@ function App() {
 					{/* Products */}
 				</Switch>
 				{/* Footer */}
-			</Router>
-		</div>
+			</div>
+		</Router>
 	)
 }
 

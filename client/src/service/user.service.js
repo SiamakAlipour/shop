@@ -4,16 +4,11 @@ let user = axios.create({
 	baseURL: 'http://127.0.0.1:8001/api/users',
 })
 const register = async (username, password, email) => {
-	await user
-		.post('/register', {
-			username,
-			password,
-			email,
-		})
-		.then()
-		.catch((err) => {
-			console.log(err)
-		})
+	await user.post('/register', {
+		username,
+		password,
+		email,
+	})
 }
 const login = async (username, password) => {
 	await user

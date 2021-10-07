@@ -7,7 +7,8 @@ import IconButton from '@mui/material/IconButton'
 function Message({ info, message }) {
 	const dispatch = useDispatch()
 	useEffect(() => {
-		if (message) setTimeout(() => dispatch(removeMessage()), 1500)
+		clearTimeout()
+		if (message) setTimeout(() => dispatch(removeMessage()), 3000)
 		else return
 	})
 	if (message) {

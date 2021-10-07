@@ -27,7 +27,7 @@ router.post('/register', async (req, res) => {
 	})
 	try {
 		const newUser = await user.save()
-		res.status(200).json(newUser)
+		res.status(200).send({ message: 'ثبت نام شما با موفقیت انجام شد.' })
 	} catch (error) {
 		res.status(400).json({
 			error,
@@ -54,6 +54,7 @@ router.post('/login', async (req, res) => {
 		id: userFind._id,
 		username: userFind.username,
 		password: userFind.password,
+		admin: userFind.admin,
 		token,
 	})
 })

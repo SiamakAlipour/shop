@@ -15,12 +15,9 @@ function Login({ isLoggedIn }) {
 
 	const dispatch = useDispatch()
 	const history = useHistory()
-	React.useEffect(() => {
-		console.log(isLoggedIn)
-	})
+
 	const handleLogin = (value) => {
 		setLoading(true)
-		console.log(value.username, value.password)
 		dispatch(login(value.username, value.password))
 			.then(() => {
 				history.push('/account')
@@ -38,7 +35,7 @@ function Login({ isLoggedIn }) {
 	const SigninSchema = Yup.object().shape({
 		username: Yup.string()
 
-			.min(2, 'نام کاربری وارد شده کوتاه است!')
+			.min(2, 'نام کاربری حداقل ')
 
 			.required('لطفا وارد نمایید'),
 
@@ -51,39 +48,6 @@ function Login({ isLoggedIn }) {
 	return (
 		<div className='login'>
 			<div className='container'>
-				{/* <form
-					action=''
-					className='login__form form-control'
-					onSubmit={handleLogin}>
-					<input
-						type='text'
-						placeholder='نام کاربری'
-						className=' login__input form-control'
-						ref={usernameInput}
-					/>
-					<input
-						type='password'
-						placeholder='رمز عبور'
-						className=' login__input form-control'
-						ref={passwordInput}
-					/>
-					<div className='login__formCheck'>
-						<input
-							type='checkbox'
-							className='form-check-input'
-							id='rememberCheckBox'
-						/>
-						<label htmlFor='rememberCheckBox'>
-							مرا به خاطر بسپار
-						</label>
-					</div>
-					<button className='btn btn-success'>
-						{loading && (
-							<span className='spinner-border spinner-border-sm'></span>
-						)}
-						<span>ورود</span>
-					</button>
-				</form> */}
 				<Formik
 					initialValues={{
 						username: '',

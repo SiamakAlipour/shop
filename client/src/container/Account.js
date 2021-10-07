@@ -8,9 +8,8 @@ import './styles/Account.scss'
 import { userService } from '../service/user.service'
 import { Redirect } from 'react-router'
 import { useSelector, connect } from 'react-redux'
-function Account({ isLoggedIn }) {
+function Account({ isLoggedIn, user }) {
 	const [option, setOption] = useState(0)
-	const [admin, setAdmin] = useState(true)
 
 	if (!isLoggedIn) {
 		console.log('account')
@@ -24,10 +23,10 @@ function Account({ isLoggedIn }) {
 						<li>خانه</li>
 					</Link>
 
-					{admin ? (
+					{user?.admin ? (
 						<li onClick={() => setOption(0)}>اضافه کردن کالا</li>
 					) : null}
-					{admin ? (
+					{user?.admin ? (
 						<li onClick={() => setOption(1)}>مدیریت کاربران</li>
 					) : null}
 					<Link to='/checkout'>
@@ -50,9 +49,10 @@ function Account({ isLoggedIn }) {
 	)
 }
 const mapStateToProps = (state) => {
-	const { isLoggedIn } = state.auth
+	const { isLoggedIn, user } = state.auth
 	return {
 		isLoggedIn,
+		user,
 	}
 }
 export default connect(mapStateToProps)(Account)
