@@ -12,6 +12,8 @@ import Sidebar from './Sidebar'
 import Checkout from './Checkout'
 import Message from '../components/Message'
 import { useSelector } from 'react-redux'
+import AuthVerify from '../common/AuthVerify'
+import { userService } from '../service/user.service'
 function App() {
 	const [info, message] = useSelector((state) => state.message)
 	return (
@@ -42,6 +44,7 @@ function App() {
 					{/* Products */}
 				</Switch>
 				{/* Footer */}
+				<AuthVerify logOut={userService.logout} />
 			</div>
 		</Router>
 	)

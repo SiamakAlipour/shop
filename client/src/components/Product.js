@@ -18,30 +18,45 @@ function Product({ id, name, image, description, price }) {
 		setPriceComma(pc)
 	}, [price])
 	const checkout = useSelector((state) => state.checkout)
+	const auth = useSelector((state) => state.auth)
 	const dispatch = useDispatch()
 	const handleCheckout = () => {
-		if (checkout.some((checkout) => checkout.id === id)) {
-			let checkoutItemIndex = checkout.findIndex((item) => item.id === id)
-			console.log(checkoutItemIndex)
-			dispatch(checkoutCount(id, checkout[checkoutItemIndex].count + 1))
-			dispatch(
-				checkoutTotalCost(
-					id,
-					checkout[checkoutItemIndex].unitPrice *
-						(checkout[checkoutItemIndex].count + 1)
+		if (auth.isLoggedIn) {
+			if (checkout.some((checkout) => checkout.id === id)) {
+				let checkoutItemIndex = checkout.findIndex(
+					(item) => item.id === id
 				)
-			)
+				console.log(checkoutItemIndex)
+				dispatch(
+					checkoutCount(id, checkout[checkoutItemIndex].count + 1)
+				)
+				dispatch(
+					checkoutTotalCost(
+						id,
+						checkout[checkoutItemIndex].unitPrice *
+							(checkout[checkoutItemIndex].count + 1)
+					)
+				)
+				dispatch(
+					addMessage(
+						'alert-success',
+						`تعداد کالا به ${
+							checkout[checkoutItemIndex].count + 1
+						} افزایش یافت`
+					)
+				)
+			} else {
+				dispatch(addCheckout(id, name, description, price))
+				dispatch(addMessage('alert-success', 'به سبد کالا اضافه شد'))
+			}
+		} else {
+			console.log(auth)
 			dispatch(
 				addMessage(
-					'alert-success',
-					`تعداد کالا به ${
-						checkout[checkoutItemIndex].count + 1
-					} افزایش یافت`
+					'alert-danger',
+					'برای اضافه کردن به سبد کالا باید وارد حساب کاربری شوید.'
 				)
 			)
-		} else {
-			dispatch(addCheckout(id, name, description, price))
-			dispatch(addMessage('alert-success', 'به سبد کالا اضافه شد'))
 		}
 	}
 

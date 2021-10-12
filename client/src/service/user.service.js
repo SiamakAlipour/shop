@@ -26,4 +26,5 @@ const login = async (username, password) => {
 const logout = () => {
 	localStorage.removeItem('user')
 }
+
 export const userService = { register, login, logout }

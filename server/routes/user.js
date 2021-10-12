@@ -49,7 +49,9 @@ router.post('/login', async (req, res) => {
 	const validPass = await bcrypt.compare(password, userFind.password)
 	if (!validPass) return res.status(400).send('Invalid username or password')
 	// Create and asign token
-	const token = jwt.sign({ _id: userFind._id }, process.env.SECRET)
+	const token = jwt.sign({ _id: userFind._id }, process.env.SECRET, {
+		expiresIn: 600,
+	})
 	res.header('auth-header', token).send({
 		id: userFind._id,
 		username: userFind.username,
@@ -57,4 +59,13 @@ router.post('/login', async (req, res) => {
 		admin: userFind.admin,
 		token,
 	})
+})
+
+router.get('/', async (req, res) => {
+	try {
+		const users = await User.find()
+		res.status(200).json(users)
+	} catch (error) {
+		res.status(400).json({ error })
+	}
 })

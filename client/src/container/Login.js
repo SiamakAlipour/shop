@@ -26,7 +26,6 @@ function Login({ isLoggedIn }) {
 			.catch(() => {
 				setLoading(false)
 			})
-		console.log(isLoggedIn)
 	}
 	if (isLoggedIn) {
 		console.log('Login')

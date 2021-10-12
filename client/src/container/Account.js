@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import './styles/Account.scss'
 import Option from './Option'
 import { Link } from 'react-router-dom'
@@ -10,7 +10,25 @@ import { Redirect } from 'react-router'
 import { useSelector, connect } from 'react-redux'
 function Account({ isLoggedIn, user }) {
 	const [option, setOption] = useState(0)
-
+	const parseJwt = (token) => {
+		try {
+			return JSON.parse(atob(token.split('.')[1]))
+		} catch (e) {
+			return null
+		}
+	}
+	React.useEffect(() => {
+		const user = JSON.parse(localStorage.getItem('user'))
+		if (user) {
+			const decodedJwt = parseJwt(user.token)
+			const fiveMinutes = 5 * 60
+			if (decodedJwt.exp * 1000 - Date.now() < fiveMinutes) {
+				userService.logout()
+				window.location.reload()
+			} else {
+			}
+		}
+	}, [])
 	if (!isLoggedIn) {
 		console.log('account')
 		return <Redirect to='/account/login' />

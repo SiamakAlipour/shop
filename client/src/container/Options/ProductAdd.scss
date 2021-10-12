@@ -1,0 +1,18 @@
+.productAdd {
+	width: 100%;
+	height: auto;
+	padding: 30px;
+	> input {
+		width: 50%;
+		margin: auto;
+		margin-top: 20px;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	.productAdd {
+		> input {
+			width: 100%;
+		}
+	}
+}
