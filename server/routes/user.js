@@ -50,7 +50,7 @@ router.post('/login', async (req, res) => {
 	if (!validPass) return res.status(400).send('Invalid username or password')
 	// Create and asign token
 	const token = jwt.sign({ _id: userFind._id }, process.env.SECRET, {
-		expiresIn: 600,
+		expiresIn: '30d',
 	})
 	res.header('auth-header', token).send({
 		id: userFind._id,
@@ -60,7 +60,35 @@ router.post('/login', async (req, res) => {
 		token,
 	})
 })
-
+router.delete('/:id', async (req, res) => {
+	try {
+		const removedProduct = await User.remove({ _id: req.params.id })
+		res.status(200).json({
+			message: 'removed',
+			removedProduct,
+		})
+	} catch (error) {
+		res.status(400).json({ error })
+	}
+})
+router.patch('/:id/:username/:password/:email', async (req, res) => {
+	const email = req.params.email
+	try {
+		const updatedUser = await User.updateOne(
+			{ _id: req.params.id },
+			{
+				$set: {
+					username: req.params.username,
+					password: req.params.password,
+					email: req.params.email,
+				},
+			}
+		)
+		res.status(200).json(updatedUser)
+	} catch (error) {
+		res.status(400).json({ error })
+	}
+})
 router.get('/', async (req, res) => {
 	try {
 		const users = await User.find()

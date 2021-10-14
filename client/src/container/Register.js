@@ -72,6 +72,7 @@ function Register() {
 								name='username'
 								className='register__input form-control'
 								placeholder='نام کاربری'
+								autoComplete='new-username'
 							/>
 							{errors.username && touched.username ? (
 								<div className='register__text text-danger'>
@@ -83,6 +84,7 @@ function Register() {
 								name='password'
 								className='register__input form-control'
 								placeholder='رمز عبور'
+								autoComplete='new-password'
 							/>
 							{errors.password && touched.password ? (
 								<div className='register__text text-danger'>

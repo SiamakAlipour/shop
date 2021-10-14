@@ -18,7 +18,7 @@ export const register = (username, password, email) => (dispatch) => {
 				type: MESSAGE_ADD,
 				payload: {
 					info: 'alert-success',
-					message: res.data.message,
+					message: 'ثبت نام با موفقیت انجام شد',
 				},
 			})
 
