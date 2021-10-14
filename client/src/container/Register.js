@@ -33,25 +33,28 @@ function Register() {
 
 			.required('لطفا رمز عبور را وارد نمایید'),
 
-		passwordRepeat: Yup.string('تکرار رمز عبور را وارد نمایید').when(
-			('password',
-			{
-				is: (val) => (val && val.length > 0 ? true : false),
-				then: Yup.string().oneOf(
-					[Yup.ref('password')],
-					'تکرار رمز عبور صحیح نیست!'
-				),
-			})
-		),
+		passwordRepeat: Yup.string('تکرار رمز عبور را وارد نمایید')
+			.when(
+				('password',
+				{
+					is: (val) => (val && val.length > 0 ? true : false),
+					then: Yup.string().oneOf(
+						[Yup.ref('password')],
+						'تکرار رمز عبور صحیح نیست!'
+					),
+				})
+			)
+			.required('تکرار رمز عبور را وارد نمایید.'),
 
 		email: Yup.string('ایمیل را وارد نمایید')
 
 			.email('ایمیل معتبر وارد نمایید')
 
 			.required('لطفا ایمیل را وارد نمایید'),
-		checkbox: Yup.boolean()
-			.oneOf([true], 'قوانین را باید قبول کنید!')
-			.required('قوانین را باید قبول کنید!'),
+		acceptTerms: Yup.boolean().oneOf(
+			[true],
+			'باید قوانین سایت را قبول کنید.'
+		),
 	})
 	return (
 		<div className='register'>
@@ -62,6 +65,7 @@ function Register() {
 						password: '',
 						passwordRepeat: '',
 						email: '',
+						acceptTerms: false,
 					}}
 					validationSchema={SignupSchema}
 					validationOnSubmit
@@ -115,7 +119,7 @@ function Register() {
 							<div className='register__formCheck'>
 								<Field
 									type='checkbox'
-									name='checkbox'
+									name='acceptTerms'
 									className='form-check-input'
 									id='rememberCheckBox'
 								/>
@@ -124,9 +128,9 @@ function Register() {
 									<a href='#قوانین'>قوانین</a> را قبول دارم
 								</label>
 							</div>
-							{errors.checkbox && touched.checkbox ? (
+							{errors.acceptTerms && touched.acceptTerms ? (
 								<div className='register__text text-danger'>
-									{errors.checkbox}
+									{errors.acceptTerms}
 								</div>
 							) : null}
 							<button type='submit' className='btn btn-primary'>
