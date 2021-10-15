@@ -10,8 +10,6 @@ import { login } from '../store/actions/auth'
 
 function Login({ isLoggedIn }) {
 	const [loading, setLoading] = useState(false)
-	const usernameInput = useRef()
-	const passwordInput = useRef()
 
 	const dispatch = useDispatch()
 	const history = useHistory()

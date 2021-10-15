@@ -67,6 +67,7 @@ router.patch('/:id', async (req, res) => {
 					name: req.params.name,
 					description: req.params.description,
 					image: req.params.image,
+					price: req.params.price,
 				},
 			}
 		)
