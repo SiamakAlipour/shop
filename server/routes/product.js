@@ -10,7 +10,6 @@ export const router = express.Router()
 
 // Add product
 router.post('/', upload.single('image'), async (req, res) => {
-	console.log(req.file)
 	const product = new Product({
 		name: req.body.name,
 		description: req.body.description,
@@ -19,7 +18,7 @@ router.post('/', upload.single('image'), async (req, res) => {
 	})
 	try {
 		const newProduct = await product.save()
-		res.status(200).json('newProduct')
+		res.status(200).json(newProduct)
 	} catch (error) {
 		res.status(400).json({
 			error,

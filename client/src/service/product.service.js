@@ -7,13 +7,8 @@ const products = axios.create({
 const allProducts = async () => {
 	await products.get('/')
 }
-const addProduct = async (name, description, image, price) => {
-	await products.post('/', {
-		name,
-		description,
-		image,
-		price,
-	})
+const addProduct = async (formData) => {
+	await products.post('/', formData)
 }
 const editProduct = async (id, name, description, image, price) => {
 	await products.patch(`/${id}`, {

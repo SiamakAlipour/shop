@@ -4,6 +4,7 @@ import {
 	PRODUCT_DELETE,
 	PRODUCTS_ALL,
 	PRODUCT_GET,
+	MESSAGE_ADD,
 } from './types'
 import axios from 'axios'
 import authHeader from '../../service/auth-header'
@@ -31,15 +32,30 @@ export const allProducts = () => async (dispatch) => {
 	})
 }
 
-export const addProduct = (name, description, image, price) => ({
-	type: PRODUCT_ADD,
-	payload: {
-		name,
-		description,
-		image,
-		price,
-	},
-})
+export const addProduct = (formData) => (dispatch) => {
+	return productService.addProduct(formData).then(
+		(res) => {
+			dispatch({
+				type: MESSAGE_ADD,
+				payload: {
+					info: 'alert-success',
+					message: 'کالا با موفقیت اضافه شد.',
+				},
+			})
+			return Promise.resolve()
+		},
+		(error) => {
+			dispatch({
+				type: MESSAGE_ADD,
+				payload: {
+					info: 'alert-danger',
+					message: error.response.data,
+				},
+			})
+			return Promise.reject()
+		}
+	)
+}
 export const editProduct = (id) => ({
 	type: PRODUCT_EDIT,
 	payload: {
