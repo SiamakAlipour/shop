@@ -30,11 +30,11 @@ function Main() {
 
 			<div className='main__banner'>
 				<div className='main__bannerImage'></div>
-				<div className='main__ads'>
+				{/* <div className='main__ads'>
 					<Ads image={'https://picsum.photos/468/60'} />
 					<Ads image={'https://picsum.photos/468/60'} />
 					<Ads image={'https://picsum.photos/468/60'} />
-				</div>
+				</div> */}
 			</div>
 			{/* Content */}
 			<div className='main__content'>

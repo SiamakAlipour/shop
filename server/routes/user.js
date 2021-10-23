@@ -78,14 +78,15 @@ router.delete('/:id', async (req, res) => {
 	}
 })
 router.patch('/:id/:username/:password/:email', async (req, res) => {
-	const email = req.params.email
+	const salt = await bcrypt.genSalt(10)
+	const hashedPassword = await bcrypt.hash(req.params.password, salt)
 	try {
 		const updatedUser = await User.updateOne(
 			{ _id: req.params.id },
 			{
 				$set: {
 					username: req.params.username,
-					password: req.params.password,
+					password: hashedPassword,
 					email: req.params.email,
 				},
 			}

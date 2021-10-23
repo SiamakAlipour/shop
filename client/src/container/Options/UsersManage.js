@@ -36,18 +36,15 @@ function UsersManage() {
 		show()
 		setUser(user)
 	}
-	const handleUserRemove = (user) => {
-		users.delete(`/${user._id}`).then((res) => {
-			console.log(res.data)
-		})
+	const handleUserRemove = async (user) => {
+		await users.delete(`/${user._id}`)
 		hide()
 	}
-	const handleUserEdit = (user, username, password, email) => {
-		users
-			.patch(`/${user._id}/${username}/${password}/${email}`)
-			.then((res) => {
-				console.log(res.data)
-			})
+	const handleUserEdit = async (user, u = null, p = null, e = null) => {
+		const username = u ? u : user.username
+		const password = p ? p : user.password
+		const email = e ? e : user.email
+		await users.patch(`/${user._id}/${username}/${password}/${email}`)
 	}
 	useEffect(() => {
 		users.get('/').then((res) => {
@@ -60,6 +57,7 @@ function UsersManage() {
 				user.username.toLowerCase().includes(search?.toLowerCase())
 			)
 		)
+		// eslint-disable-next-line
 	}, [search])
 	return (
 		<div className='usersManage form-control'>
@@ -127,6 +125,7 @@ function UsersManage() {
 							/>
 							<input
 								type='password'
+								placeholder={user.password}
 								className='form-control'
 								autoComplete='new-password'
 								ref={password}
