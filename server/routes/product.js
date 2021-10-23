@@ -1,19 +1,25 @@
 import express from 'express'
 import Product from '../models/Product.js'
-import verifyToken from './verifyToken.js'
+import { upload } from './upload'
+import multer from 'multer'
+import fs from 'fs'
+
+// import verifyToken from './verifyToken.js'
 
 export const router = express.Router()
+
 // Add product
-router.post('/', async (req, res) => {
+router.post('/', upload.single('image'), async (req, res) => {
+	console.log(req.file)
 	const product = new Product({
 		name: req.body.name,
 		description: req.body.description,
-		image: req.body.image,
 		price: req.body.price,
+		image: req.file.filename,
 	})
 	try {
 		const newProduct = await product.save()
-		res.status(200).json(newProduct)
+		res.status(200).json('newProduct')
 	} catch (error) {
 		res.status(400).json({
 			error,
@@ -58,7 +64,7 @@ router.delete('/:id', async (req, res) => {
 })
 
 // update a product
-router.patch('/:id', async (req, res) => {
+router.patch('/:id', upload.single('image'), async (req, res) => {
 	try {
 		const updatedPost = await Product.updateOne(
 			{ _id: req.params.id },
@@ -66,7 +72,7 @@ router.patch('/:id', async (req, res) => {
 				$set: {
 					name: req.params.name,
 					description: req.params.description,
-					image: req.params.image,
+					image: req.file.path,
 					price: req.params.price,
 				},
 			}

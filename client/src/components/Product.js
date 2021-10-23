@@ -59,11 +59,13 @@ function Product({ id, name, image, description, price }) {
 			)
 		}
 	}
-
+	const configImage = (image) => {
+		return 'http://localhost:8001/uploads/' + image
+	}
 	return (
 		<div className='product'>
 			<div className='product__content'>
-				<img src={image} alt='' />
+				<img src={configImage(image)} alt='' />
 				<p className='product__name'>{name}</p>
 				<p className='product__description'>{description}</p>
 			</div>
