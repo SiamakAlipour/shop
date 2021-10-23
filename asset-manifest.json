@@ -1,26 +1,26 @@
 {
   "files": {
-    "main.css": "/shop/static/css/main.74b464a5.chunk.css",
-    "main.js": "/shop/static/js/main.25696b23.chunk.js",
-    "main.js.map": "/shop/static/js/main.25696b23.chunk.js.map",
-    "runtime-main.js": "/shop/static/js/runtime-main.1ac97f15.js",
-    "runtime-main.js.map": "/shop/static/js/runtime-main.1ac97f15.js.map",
-    "static/css/2.53150396.chunk.css": "/shop/static/css/2.53150396.chunk.css",
-    "static/js/2.e2420d69.chunk.js": "/shop/static/js/2.e2420d69.chunk.js",
-    "static/js/2.e2420d69.chunk.js.map": "/shop/static/js/2.e2420d69.chunk.js.map",
-    "static/js/3.17fcc091.chunk.js": "/shop/static/js/3.17fcc091.chunk.js",
-    "static/js/3.17fcc091.chunk.js.map": "/shop/static/js/3.17fcc091.chunk.js.map",
+    "main.css": "/shop/static/css/main.d59d9872.chunk.css",
+    "main.js": "/shop/static/js/main.4ec6e824.chunk.js",
+    "main.js.map": "/shop/static/js/main.4ec6e824.chunk.js.map",
+    "runtime-main.js": "/shop/static/js/runtime-main.07588969.js",
+    "runtime-main.js.map": "/shop/static/js/runtime-main.07588969.js.map",
+    "static/css/2.d4bbe2b0.chunk.css": "/shop/static/css/2.d4bbe2b0.chunk.css",
+    "static/js/2.7956dcbf.chunk.js": "/shop/static/js/2.7956dcbf.chunk.js",
+    "static/js/2.7956dcbf.chunk.js.map": "/shop/static/js/2.7956dcbf.chunk.js.map",
+    "static/js/3.70eba84f.chunk.js": "/shop/static/js/3.70eba84f.chunk.js",
+    "static/js/3.70eba84f.chunk.js.map": "/shop/static/js/3.70eba84f.chunk.js.map",
     "index.html": "/shop/index.html",
-    "static/css/2.53150396.chunk.css.map": "/shop/static/css/2.53150396.chunk.css.map",
-    "static/css/main.74b464a5.chunk.css.map": "/shop/static/css/main.74b464a5.chunk.css.map",
-    "static/js/2.e2420d69.chunk.js.LICENSE.txt": "/shop/static/js/2.e2420d69.chunk.js.LICENSE.txt",
+    "static/css/2.d4bbe2b0.chunk.css.map": "/shop/static/css/2.d4bbe2b0.chunk.css.map",
+    "static/css/main.d59d9872.chunk.css.map": "/shop/static/css/main.d59d9872.chunk.css.map",
+    "static/js/2.7956dcbf.chunk.js.LICENSE.txt": "/shop/static/js/2.7956dcbf.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/shop/static/media/IRANSansWeb(FaNum).cfda181b.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.1ac97f15.js",
-    "static/css/2.53150396.chunk.css",
-    "static/js/2.e2420d69.chunk.js",
-    "static/css/main.74b464a5.chunk.css",
-    "static/js/main.25696b23.chunk.js"
+    "static/js/runtime-main.07588969.js",
+    "static/css/2.d4bbe2b0.chunk.css",
+    "static/js/2.7956dcbf.chunk.js",
+    "static/css/main.d59d9872.chunk.css",
+    "static/js/main.4ec6e824.chunk.js"
   ]
 }
