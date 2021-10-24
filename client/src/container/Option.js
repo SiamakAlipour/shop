@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ProductAdd from './Options/ProductAdd'
+import Profile from './Options/Profile'
 import UsersManage from './Options/UsersManage'
 import './styles/Option.scss'
 function Option({ option }) {
@@ -16,9 +17,11 @@ function Option({ option }) {
 			</div>
 		)
 	} else if (option === 2) {
-		return <div className='option'>2</div>
-	} else if (option === 3) {
-		return <div className='option'>3</div>
+		return (
+			<div className='option'>
+				<Profile />
+			</div>
+		)
 	}
 }
 

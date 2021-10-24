@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
 import { addProduct } from '../../store/actions/product'
 import { useDispatch } from 'react-redux'
+import { Formik, Form, Field } from 'formik'
+import * as Yup from 'yup'
 import './ProductAdd.scss'
 import axios from 'axios'
 
@@ -11,25 +13,25 @@ const products = axios.create({
 	},
 })
 function ProductAdd() {
-	const productName = useRef()
-	const productDescription = useRef()
-	const priceInput = useRef()
 	const [selectedFile, setSelectedFile] = useState(null)
 	const [price, setPrice] = useState()
 	const dispatch = useDispatch()
 	const handleFile = (e) => {
-		setSelectedFile(e.target.files[0])
+		setSelectedFile(e.currentTarget.files[0])
 	}
-	const handleUpload = () => {
+	const handleUpload = (value, { resetForm }) => {
+		console.log(value)
+		console.log(selectedFile)
 		const formData = new FormData()
-		console.log(price)
-		console.log(parseInt(price))
+
 		formData.append('image', selectedFile, selectedFile.name)
-		formData.append('name', productName.current.value)
-		formData.append('description', productDescription.current.value)
+		formData.append('name', value.name)
+		formData.append('description', value.description)
 		formData.append('price', parseInt(price.replace(/\D/g, '')))
-		// await products.post('/', formData)
+
 		dispatch(addProduct(formData))
+		resetForm()
+		setPrice(0)
 	}
 	const handleChange = ({ target }) => {
 		if (isNaN(parseInt(target.value))) {
@@ -40,9 +42,78 @@ function ProductAdd() {
 		let formattedPrice = parseInt(digitPrice).toLocaleString()
 		setPrice(formattedPrice)
 	}
+	const AddProductSchema = Yup.object().shape({
+		name: Yup.string()
+			.min(2, 'نام کالا کوتاه است.')
+			.required('لطفا وارد نمایید.'),
+		description: Yup.string()
+			.min(10, 'توضیحات کالا کوتاه است.')
+			.required('لطفا وارد نمایید.'),
+		image: Yup.mixed(),
+		price: Yup.string(),
+	})
 	return (
 		<div className='productAdd form-control'>
-			<input
+			<Formik
+				initialValues={{
+					name: '',
+					description: '',
+					image: null,
+					price: 0,
+				}}
+				validationSchema={AddProductSchema}
+				validateOnSubmit
+				onSubmit={handleUpload}>
+				{({ errors, touched }) => (
+					<Form className='form-control'>
+						<Field
+							name='name'
+							className='form-control'
+							placeholder='نام کالا'
+						/>
+						{errors.name && touched.name ? (
+							<div className='text-danger'>{errors.name}</div>
+						) : null}
+						<Field
+							type='text'
+							name='description'
+							className='form-control'
+							placeholder='توضیحات کالا'
+						/>
+						{errors.description && touched.description ? (
+							<div className=' text-danger'>
+								{errors.description}
+							</div>
+						) : null}
+						<Field
+							type='file'
+							name='image'
+							className='form-control'
+							onChange={handleFile}
+							required
+						/>
+						{errors.image && touched.image ? (
+							<div className='text-danger'>{errors.image}</div>
+						) : null}
+						<input
+							type='text'
+							name='price'
+							className='form-control'
+							placeholder='قیمت کالا'
+							value={price}
+							onChange={handleChange}
+						/>
+						{errors.price && touched.price ? (
+							<div className='text-danger'>{errors.price}</div>
+						) : null}
+
+						<button type='submit' className='btn btn-success'>
+							اضافه کردن کالا
+						</button>
+					</Form>
+				)}
+			</Formik>
+			{/* <input
 				type='text'
 				className='form-control'
 				placeholder='نام کالا'
@@ -78,7 +149,7 @@ function ProductAdd() {
 				value='اضافه کردن کالا'
 				onClick={handleUpload}
 				className='btn btn-primary'
-			/>
+			/> */}
 		</div>
 	)
 }

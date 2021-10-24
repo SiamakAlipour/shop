@@ -62,6 +62,7 @@ router.post('/login', async (req, res) => {
 		id: userFind._id,
 		username: userFind.username,
 		password: userFind.password,
+		email: userFind.email,
 		admin: userFind.admin,
 		token,
 	})

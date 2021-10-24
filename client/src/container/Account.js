@@ -9,7 +9,7 @@ import { userService } from '../service/user.service'
 import { Redirect } from 'react-router'
 import { useSelector, connect } from 'react-redux'
 function Account({ isLoggedIn, user }) {
-	const [option, setOption] = useState(0)
+	const [option, setOption] = useState(2)
 	const parseJwt = (token) => {
 		try {
 			return JSON.parse(atob(token.split('.')[1]))
@@ -40,7 +40,7 @@ function Account({ isLoggedIn, user }) {
 					<Link to='/' className='active'>
 						<li>خانه</li>
 					</Link>
-
+					<li onClick={() => setOption(2)}>پروفایل</li>
 					{user?.admin ? (
 						<li onClick={() => setOption(0)}>اضافه کردن کالا</li>
 					) : null}
@@ -50,7 +50,7 @@ function Account({ isLoggedIn, user }) {
 					<Link to='/checkout'>
 						<li>سبد خرید</li>
 					</Link>
-					<li onClick={() => setOption(3)}>ویرایش حساب کاربری</li>
+
 					<li
 						onClick={() => {
 							userService.logout()

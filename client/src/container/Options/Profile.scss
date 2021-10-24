@@ -1,0 +1,44 @@
+.profile {
+	width: 600px;
+	height: auto;
+	padding: 20px;
+	&--wrap {
+		width: 100%;
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+		label {
+			flex: 0.2;
+		}
+	}
+	&__buttonWrap {
+		width: 100%;
+		margin: auto;
+
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+	}
+	&__form {
+		padding: 10px;
+		display: flex;
+		align-items: flex-start;
+		flex-direction: column;
+		button {
+			width: 150px;
+			margin: auto;
+		}
+	}
+	&__input {
+		flex: 0.8;
+		// width: 100%;
+		margin-right: 10px;
+		> div {
+			height: 40px;
+			.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+				opacity: 1;
+				-webkit-text-fill-color: rgba(0, 0, 0, 0.5);
+			}
+		}
+	}
+}
