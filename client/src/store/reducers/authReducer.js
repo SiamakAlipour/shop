@@ -4,6 +4,7 @@ import {
 	LOGOUT,
 	REGISTER_FAILED,
 	REGISTER_SUCCESS,
+	USER_EDIT,
 } from '../actions/types'
 
 const user = JSON.parse(localStorage.getItem('user'))
@@ -43,6 +44,12 @@ const authReducer = (state = initialState, action) => {
 				...state,
 				isLoggedIn: false,
 				user: null,
+			}
+		case USER_EDIT:
+			return {
+				...state,
+				isLoggedIn: true,
+				payload,
 			}
 		default:
 			return state

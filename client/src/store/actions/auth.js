@@ -7,6 +7,7 @@ import {
 	MESSAGE_ADD,
 	REGISTER_FAILED,
 	REGISTER_SUCCESS,
+	USER_EDIT,
 } from './types'
 export const register = (username, password, email) => (dispatch) => {
 	return userService.register(username, password, email).then(
@@ -77,3 +78,8 @@ export const logout = () => (dispatch) => {
 		type: LOGOUT,
 	})
 }
+
+export const editUser = (user) => ({
+	type: USER_EDIT,
+	payload: user,
+})

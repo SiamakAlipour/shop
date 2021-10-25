@@ -1,7 +1,11 @@
 import express from 'express'
 import bcrypt from 'bcryptjs'
 import User from '../models/User'
-import { loginValidation, registerValidation } from '../validation'
+import {
+	editValidation,
+	loginValidation,
+	registerValidation,
+} from '../validation'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 dotenv.config()
@@ -10,26 +14,29 @@ export const router = express.Router()
 
 router.post('/register', async (req, res) => {
 	// Register validation
+	let { username, password, email, admin } = req.body
 	const { error } = registerValidation(req.body)
 	if (error) return res.status(400).send(error.details[0].message)
 	// check if username is already in DB
 	const checkUsernameExist = await User.findOne({
-		username: req.body.username,
+		username: username.toLowerCase(),
 	})
 	if (checkUsernameExist)
 		return res.status(400).send('Username already exist')
 	// check if email is already in DB
-	const checkEmailExist = await User.findOne({ email: req.body.email })
+	const checkEmailExist = await User.findOne({
+		email: email.toLowerCase(),
+	})
 	if (checkEmailExist) return res.status(400).send('Email already exist')
 	// hashing password
 	const salt = await bcrypt.genSalt(10)
-	const hashedPassword = await bcrypt.hash(req.body.password, salt)
+	const hashedPassword = await bcrypt.hash(password, salt)
 	// create a user
 	const user = new User({
-		username: req.body.username,
+		username: username.toLowerCase(),
 		password: hashedPassword,
-		email: req.body.email,
-		admin: req.body.admin,
+		email: email.toLowerCase(),
+		admin: admin,
 	})
 	try {
 		const newUser = await user.save()
@@ -49,7 +56,7 @@ router.post('/login', async (req, res) => {
 	const { error } = loginValidation(req.body)
 	if (error) return res.status(400).send(error.details[0].message)
 	// find if username exist
-	const userFind = await User.findOne({ username })
+	const userFind = await User.findOne({ username: username.toLowerCase() })
 	if (!userFind) return res.status(400).send('Invalid username or password')
 	// check if password is correct
 	const validPass = await bcrypt.compare(password, userFind.password)
@@ -67,6 +74,7 @@ router.post('/login', async (req, res) => {
 		token,
 	})
 })
+// Delete user
 router.delete('/:id', async (req, res) => {
 	try {
 		const removedProduct = await User.remove({ _id: req.params.id })
@@ -78,17 +86,33 @@ router.delete('/:id', async (req, res) => {
 		res.status(400).json({ error })
 	}
 })
+// Edit user
 router.patch('/:id/:username/:password/:email', async (req, res) => {
-	const salt = await bcrypt.genSalt(10)
-	const hashedPassword = await bcrypt.hash(req.params.password, salt)
+	const { id, username, password, email } = req.params
+	let finalPassword
+
+	const userEditFind = await User.findOne({ _id: id })
+	const usernameFind = await User.findOne({
+		username: username.toLowerCase(),
+	})
+
+	if (username !== userEditFind.username && usernameFind)
+		return res.status(400).send('این نام کاربری استفاده شده است')
+	if (password === userEditFind.password) {
+		finalPassword = userEditFind.password
+	} else {
+		const salt = await bcrypt.genSalt(10)
+		finalPassword = await bcrypt.hash(password, salt)
+	}
+
 	try {
 		const updatedUser = await User.updateOne(
-			{ _id: req.params.id },
+			{ _id: id },
 			{
 				$set: {
-					username: req.params.username,
-					password: hashedPassword,
-					email: req.params.email,
+					username: username.toLowerCase(),
+					password: finalPassword,
+					email: email.toLowerCase(),
 				},
 			}
 		)
@@ -97,6 +121,7 @@ router.patch('/:id/:username/:password/:email', async (req, res) => {
 		res.status(400).json({ error })
 	}
 })
+// Get all users list
 router.get('/', async (req, res) => {
 	try {
 		const users = await User.find()

@@ -11,6 +11,14 @@ export const registerValidation = (data) => {
 	})
 	return schema.validate(data)
 }
+export const editValidation = (data) => {
+	const schema = Joi.object({
+		username: Joi.string().min(6).max(30).required(),
+
+		email: Joi.string().email(),
+	})
+	return schema.validate(data)
+}
 export const loginValidation = (data) => {
 	const schema = Joi.object({
 		username: Joi.string().required(),

@@ -1,16 +1,75 @@
 import React, { useState } from 'react'
 import './Profile.scss'
 import { Formik, Field } from 'formik'
-
+import axios from 'axios'
+import * as Yup from 'yup'
 import { TextField, Button } from '@mui/material'
+import { MESSAGE_ADD, USER_EDIT } from '../../store/actions/types'
+import { useDispatch } from 'react-redux'
+import { addMessage } from '../../store/actions/message'
+import { logout } from '../../store/actions/auth'
+const userEdit = axios.create({
+	baseURL: 'http://127.0.0.1:8001/api/users',
+})
 function Profile() {
 	const user = JSON.parse(localStorage.getItem('user'))
 	const [disable, setDisable] = useState(true)
 	React.useEffect(() => {
 		console.log(user)
 	})
-	const handleEdit = (e) => {
-		setDisable(false)
+
+	const dispatch = useDispatch()
+
+	const handleEdit = async (u, p, e) => {
+		const passwordPattern =
+			/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/
+		let username = null ? user.username : u
+		let password = user.password
+		let email = null ? user.email : e
+		if (username.length < 6) {
+			dispatch(
+				addMessage('alert-danger', 'نام کاربری باید حداقل 6 حرف باشد.')
+			)
+
+			return
+		}
+		if (p && p.match(passwordPattern)) {
+			password = p
+		} else if (p && !p.match(passwordPattern)) {
+			dispatch(
+				addMessage(
+					'alert-danger',
+					'رمز عبور باید دارای حداقل 8 حرف شامل اعداد و حروف خاص باشد.'
+				)
+			)
+
+			return
+		}
+		if (
+			username === user.username &&
+			password === user.password &&
+			email === user.email
+		) {
+			dispatch(addMessage('alert-danger', 'هیچ تغییری انجام نشده است.'))
+
+			return
+		}
+
+		await userEdit
+			.patch(`/${user.id}/${username}/${password}/${email}`)
+			.then((res) => {
+				dispatch(
+					addMessage(
+						'alert-success',
+						'با موفقیت ویرایش شد از ابتدا وارد شوید .'
+					)
+				)
+
+				dispatch(logout())
+			})
+			.catch((err) => {
+				dispatch(addMessage('alert-danger', 'test'))
+			})
 	}
 
 	return (
@@ -18,11 +77,22 @@ function Profile() {
 			<Formik
 				initialValues={{
 					username: user.username,
+					password: '',
 					email: user.email,
 					admin: user.admin,
 				}}>
-				{({ values, handleChange, handleBlur, handleSubmit }) => (
-					<form className='profile__form'>
+				{({
+					values,
+					errors,
+					handleChange,
+					handleBlur,
+					handleSubmit,
+				}) => (
+					<form
+						className='profile__form'
+						onSubmit={(e) => {
+							e.preventDefault()
+						}}>
 						<div className='profile--wrap'>
 							<label htmlFor='username'>نام کاربری : </label>
 							<Field
@@ -32,6 +102,7 @@ function Profile() {
 								disabled={disable}
 							/>
 						</div>
+						<p>{errors.username}</p>
 						<div className='profile--wrap'>
 							<label htmlFor='username'>رمز عبور : </label>
 							<Field
@@ -42,6 +113,7 @@ function Profile() {
 								disabled={disable}
 							/>
 						</div>
+						<p>{errors.password}</p>
 						<div className='profile--wrap'>
 							<label htmlFor='username'>ایمیل : </label>
 							<Field
@@ -51,6 +123,7 @@ function Profile() {
 								disabled={disable}
 							/>
 						</div>
+						<p>{errors.email}</p>
 						<div className='profile--wrap'>
 							<label htmlFor='username'>سطح کاربری : </label>
 							<Field
@@ -62,12 +135,24 @@ function Profile() {
 							/>
 						</div>
 						{disable ? (
-							<Button variant='contained' onClick={handleEdit}>
+							<Button
+								variant='contained'
+								onClick={() => setDisable(false)}>
 								ویرایش حساب کاربری
 							</Button>
 						) : (
 							<div className='profile__buttonWrap'>
-								<Button variant='contained' color='success'>
+								<Button
+									variant='contained'
+									color='success'
+									type='submit'
+									onClick={() =>
+										handleEdit(
+											values.username,
+											values.password,
+											values.email
+										)
+									}>
 									ثبت ویرایش
 								</Button>
 								<Button
