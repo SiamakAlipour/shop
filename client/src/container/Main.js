@@ -6,23 +6,12 @@ import './styles/Main.scss'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeMessage } from '../store/actions/message'
 import Message from '../components/Message'
+import { allCheckout } from '../store/actions/checkout'
 // import { userService } from '../service/user.service'
 // import axios from 'axios'
 function Main() {
 	const [info, message] = useSelector((state) => state.message)
 	const dispatch = useDispatch()
-	// useEffect(() => {
-	// 	axios
-	// 		.post('http://127.0.0.1:8001/api/users/login', {
-	// 			username: 'siamak',
-	// 			password: '13801380',
-	// 		})
-	// 		.then((res) => {
-	// 			localStorage.setItem('user', JSON.stringify(res.data))
-	// 		})
-	// 	let x = localStorage.getItem('user')
-	// 	console.log(x)
-	// }, [])
 
 	return (
 		<div className='main'>

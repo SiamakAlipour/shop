@@ -6,22 +6,25 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
 	removeCheckoutItem,
 	checkoutCount,
-	checkoutTotalCost,
+	checkoutTotalPrice,
+	allCheckout,
 } from '../store/actions/checkout'
 import { addMessage } from '../store/actions/message'
 import Message from './Message'
 
-function CheckoutItem({ id, name, description, unitCost, totalCost, countCh }) {
+function CheckoutItem({ id, name, description, unitCost, countCh }) {
 	const countInput = useRef()
 	const [count, setCount] = useState(countCh)
+	const [totalTemp, setTotalTemp] = useState(unitCost * countCh)
 	const dispatch = useDispatch()
-	const [info, message] = useSelector((state) => state.message)
 	const handleTotalCost = (e) => {
 		let totalCostValue = countInput.current.value * unitCost
-		dispatch(checkoutCount(id, parseInt(countInput.current.value)))
-		dispatch(checkoutTotalCost(id, totalCostValue))
 		setCount(e.target.value)
+		setTotalTemp(totalCostValue)
+		dispatch(checkoutCount(id, parseInt(countInput.current.value)))
+		dispatch(checkoutTotalPrice(id, totalCostValue))
 	}
+
 	const handlePrice = (price) => {
 		var nf = new Intl.NumberFormat()
 		let pc = nf.format(price)
@@ -42,13 +45,13 @@ function CheckoutItem({ id, name, description, unitCost, totalCost, countCh }) {
 				</div>
 				{/* cost all product */}
 				<div className='checkoutItem__totalCost'>
-					قیمت کل : {handlePrice(totalCost)}
+					قیمت کل : {handlePrice(totalTemp)}
 				</div>
 				{/* edit count */}
 
 				<input
 					type='number'
-					min='0'
+					min='1'
 					className='form-control'
 					ref={countInput}
 					value={count}
@@ -61,9 +64,7 @@ function CheckoutItem({ id, name, description, unitCost, totalCost, countCh }) {
 					onClick={() => {
 						dispatch(removeCheckoutItem(id))
 						dispatch(
-							dispatch(
-								addMessage('alert-danger', 'از سبد کالا حذف شد')
-							)
+							addMessage('alert-danger', 'از سبد کالا حذف شد')
 						)
 					}}>
 					<DeleteIcon />

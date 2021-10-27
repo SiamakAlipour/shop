@@ -8,10 +8,9 @@ import { register } from '../store/actions/auth'
 import { addMessage } from '../store/actions/message'
 function Register() {
 	const history = useHistory()
-	const [info, message] = useSelector((state) => state.message)
 	const dispatch = useDispatch()
 	const handleRegister = (value) => {
-	dispatch(register(value.username, value.password, value.email))
+		dispatch(register(value.username, value.password, value.email))
 			.then(() => {
 				history.push('/account/login')
 			})

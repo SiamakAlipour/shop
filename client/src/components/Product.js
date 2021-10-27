@@ -7,9 +7,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
 	addCheckout,
 	checkoutCount,
-	checkoutTotalCost,
+	checkoutTotalPrice,
 } from '../store/actions/checkout'
 import { addMessage } from '../store/actions/message'
+import { CHECKOUT_COUNT } from '../store/actions/types'
 function Product({ id, name, image, description, price }) {
 	const [priceComma, setPriceComma] = useState(price)
 	useEffect(() => {
@@ -17,24 +18,19 @@ function Product({ id, name, image, description, price }) {
 		let pc = nf.format(price)
 		setPriceComma(pc)
 	}, [price])
-	const checkout = useSelector((state) => state.checkout)
+	const checkout = useSelector((state) => state.checkout.items)
 	const auth = useSelector((state) => state.auth)
 	const dispatch = useDispatch()
 	const handleCheckout = () => {
 		if (auth.isLoggedIn) {
-			if (checkout.some((checkout) => checkout.id === id)) {
+			if (checkout.some((checkout) => checkout.name === name)) {
 				let checkoutItemIndex = checkout.findIndex(
-					(item) => item.id === id
-				)
-				console.log(checkoutItemIndex)
-				dispatch(
-					checkoutCount(id, checkout[checkoutItemIndex].count + 1)
+					(item) => item.name === name
 				)
 				dispatch(
-					checkoutTotalCost(
-						id,
-						checkout[checkoutItemIndex].unitPrice *
-							(checkout[checkoutItemIndex].count + 1)
+					checkoutCount(
+						checkout[checkoutItemIndex]._id,
+						checkout[checkoutItemIndex].count + 1
 					)
 				)
 				dispatch(
@@ -46,7 +42,7 @@ function Product({ id, name, image, description, price }) {
 					)
 				)
 			} else {
-				dispatch(addCheckout(id, name, description, price))
+				dispatch(addCheckout(name, description, price))
 				dispatch(addMessage('alert-success', 'به سبد کالا اضافه شد'))
 			}
 		} else {

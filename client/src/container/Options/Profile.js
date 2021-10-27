@@ -4,7 +4,6 @@ import { Formik, Field } from 'formik'
 import axios from 'axios'
 import * as Yup from 'yup'
 import { TextField, Button } from '@mui/material'
-import { MESSAGE_ADD, USER_EDIT } from '../../store/actions/types'
 import { useDispatch } from 'react-redux'
 import { addMessage } from '../../store/actions/message'
 import { logout } from '../../store/actions/auth'
@@ -14,9 +13,6 @@ const userEdit = axios.create({
 function Profile() {
 	const user = JSON.parse(localStorage.getItem('user'))
 	const [disable, setDisable] = useState(true)
-	React.useEffect(() => {
-		console.log(user)
-	})
 
 	const dispatch = useDispatch()
 

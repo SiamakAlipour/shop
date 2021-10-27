@@ -1,4 +1,5 @@
 import Header from './Header'
+import React, { useEffect } from 'react'
 import './styles/App.scss'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
@@ -11,11 +12,21 @@ import Option from './Option'
 import Sidebar from './Sidebar'
 import Checkout from './Checkout'
 import Message from '../components/Message'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import AuthVerify from '../common/AuthVerify'
 import { userService } from '../service/user.service'
+import { allCheckout } from '../store/actions/checkout'
+import { allProducts } from '../store/actions/product'
 function App() {
 	const [info, message] = useSelector((state) => state.message)
+	const dispatch = useDispatch()
+	const user = JSON.parse(localStorage.getItem('user'))
+
+	useEffect(() => {
+		if (user) {
+			dispatch(allCheckout())
+		}
+	}, [])
 	return (
 		<Router>
 			<div className='App'>

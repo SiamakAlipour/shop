@@ -24,6 +24,29 @@ const userSchema = mongoose.Schema({
 		type: Boolean,
 		default: false,
 	},
+	checkout: [
+		{
+			name: {
+				type: String,
+				required: true,
+			},
+			description: {
+				type: String,
+				required: true,
+			},
+			date: {
+				type: Date,
+				default: Date.now,
+			},
+			unitPrice: {
+				type: Number,
+			},
+			count: {
+				type: Number,
+				required: true,
+			},
+		},
+	],
 })
 
 export default mongoose.model('users', userSchema)

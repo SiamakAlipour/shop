@@ -9,7 +9,7 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
 import IconButton from '@mui/material/IconButton'
 // import authHeader from '../service/auth-header'
 function Header() {
-	const checkout = useSelector((state) => state.checkout)
+	const checkout = useSelector((state) => state.checkout.items)
 	const { isLoggedIn } = useSelector((state) => state.auth)
 	const searchInput = useRef()
 	const dispatch = useDispatch()

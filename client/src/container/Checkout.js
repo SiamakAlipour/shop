@@ -3,28 +3,30 @@ import './styles/Checkout.scss'
 import LoadingButton from '@mui/lab/LoadingButton'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import CheckoutItem from '../components/CheckoutItem'
-import { useSelector } from 'react-redux'
-function Checkout() {
+import { useSelector, useDispatch } from 'react-redux'
+import { allCheckout } from '../store/actions/checkout'
+import { connect } from 'react-redux'
+function Checkout({ allCheckout, checkout }) {
 	const [totalCost, setTotalCost] = useState(0)
 	const [loading, setLoading] = useState(false)
-
-	const checkout = useSelector((state) => state.checkout)
-
+	const [checkoutItem, setCheckoutItem] = useState()
+	const dispatch = useDispatch()
 	const handlePrice = (price) => {
-		var nf = new Intl.NumberFormat()
+		let nf = new Intl.NumberFormat()
 		let pc = nf.format(price)
 		return pc
 	}
 	useEffect(() => {
+		allCheckout()
+	}, [])
+
+	useEffect(() => {
 		let temp = 0
 		checkout.map(
-			(checkout) => (temp += checkout.unitPrice * checkout.count)
+			(checkout) => (temp += checkout.count * checkout.unitPrice)
 		)
-		if (isNaN(temp)) {
-			setTotalCost(0)
-		} else {
-			setTotalCost(handlePrice(temp))
-		}
+
+		setTotalCost(handlePrice(temp))
 	}, [checkout])
 
 	return (
@@ -47,12 +49,11 @@ function Checkout() {
 				<div className='checkout__products'>
 					{checkout?.map((checkout, index) => (
 						<CheckoutItem
-							id={checkout.id}
+							id={checkout._id}
 							key={index}
 							name={checkout.name}
 							description={checkout.description}
 							unitCost={checkout.unitPrice}
-							totalCost={checkout.totalCost}
 							countCh={checkout.count}
 						/>
 					))}
@@ -61,5 +62,12 @@ function Checkout() {
 		</div>
 	)
 }
-
-export default Checkout
+const mapStateToProps = (state) => ({
+	checkout: state.checkout.items,
+})
+const mapDispatchToProps = (dispatch) => {
+	return {
+		allCheckout: () => dispatch(allCheckout()),
+	}
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Checkout)

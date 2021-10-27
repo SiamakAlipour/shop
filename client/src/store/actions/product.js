@@ -13,17 +13,6 @@ const products = axios.create({
 	baseURL: 'http://127.0.0.1:8001/api/products',
 })
 export const allProducts = () => async (dispatch) => {
-	// await productService.allProducts().then(
-	// 	(res) => {
-	// 		// Res
-
-	// 		return Promise.resolve()
-	// 	},
-	// 	(error) => {
-	// 		//  Error
-	// 		return Promise.reject()
-	// 	}
-	// )
 	await products.get('/').then((res) => {
 		dispatch({
 			type: PRODUCTS_ALL,

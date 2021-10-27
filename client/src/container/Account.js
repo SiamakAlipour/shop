@@ -17,6 +17,10 @@ function Account({ isLoggedIn, user }) {
 			return null
 		}
 	}
+	// React.useEffect(() => {
+	// 	const user = JSON.parse(localStorage.getItem('user'))
+	// 	console.log(user)
+	// })
 	React.useEffect(() => {
 		const user = JSON.parse(localStorage.getItem('user'))
 		if (user) {
@@ -30,7 +34,6 @@ function Account({ isLoggedIn, user }) {
 		}
 	}, [])
 	if (!isLoggedIn) {
-		console.log('account')
 		return <Redirect to='/account/login' />
 	}
 	return (

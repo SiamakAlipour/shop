@@ -130,3 +130,84 @@ router.get('/', async (req, res) => {
 		res.status(400).json({ error })
 	}
 })
+// get user all checkout
+router.get('/checkout/:id', async (req, res) => {
+	try {
+		const userFind = await User.findOne({ _id: req.params.id })
+		res.status(200).json(userFind.checkout)
+	} catch (error) {
+		res.status(400).json({ error })
+	}
+})
+// post a checkout
+router.post('/checkout/:id', async (req, res) => {
+	const { name, description, unitPrice, count } = req.body
+	const checkIfExist = await User.findOneAndUpdate(
+		{
+			_id: req.params.id,
+			'checkout.name': name,
+		},
+		{
+			$inc: {
+				'checkout.$.count': 1,
+			},
+		}
+	)
+	if (checkIfExist) return res.status(200).send(checkIfExist)
+	try {
+		const userFind = await User.findOne({ _id: req.params.id })
+		userFind.checkout.push({
+			name,
+			description,
+			unitPrice,
+			count,
+		})
+		userFind.save()
+		res.status(200).json(userFind.checkout)
+	} catch (error) {
+		res.status(400).json({ error })
+	}
+})
+router.patch('/checkout/:id/:checkoutID', async (req, res) => {
+	const { id, checkoutID } = req.params
+	let { name, description, unitPrice, count } = req.body
+	await User.findById(id)
+		.then((user) => {
+			const checkout = user.checkout.id(checkoutID) // returns a matching subdocument
+			name = name == null ? checkout.name : name
+			description =
+				description == null ? checkout.description : description
+			unitPrice = unitPrice == null ? checkout.unitPrice : unitPrice
+			count = count == null ? checkout.count : count
+			checkout.set({
+				name,
+				description,
+				unitPrice,
+				count,
+			})
+			return user.save()
+		})
+		.then((user) => {
+			res.status(200).send(user)
+		})
+		.catch((e) => res.status(400).send(e))
+})
+router.delete('/checkout/:id', async (req, res) => {
+	try {
+		const deleteCheckout = await User.findOneAndUpdate(
+			{
+				_id: req.params.id,
+			},
+			{
+				$pull: {
+					checkout: {
+						_id: req.body.id,
+					},
+				},
+			}
+		)
+		res.status(200).send('حذف شد')
+	} catch (error) {
+		res.status(400).send(error)
+	}
+})
