@@ -23,16 +23,18 @@ function Product({ id, name, image, description, price }) {
 	const dispatch = useDispatch()
 	const handleCheckout = () => {
 		if (auth.isLoggedIn) {
-			if (checkout.some((checkout) => checkout.name === name)) {
+			if (checkout?.some((checkout) => checkout.name === name)) {
 				let checkoutItemIndex = checkout.findIndex(
 					(item) => item.name === name
 				)
-				dispatch(
-					checkoutCount(
-						checkout[checkoutItemIndex]._id,
-						checkout[checkoutItemIndex].count + 1
-					)
-				)
+				dispatch(addCheckout(name, description, price))
+				dispatch({
+					type: CHECKOUT_COUNT,
+					payload: {
+						id: checkout[checkoutItemIndex]._id,
+						count: checkout[checkoutItemIndex].count + 1,
+					},
+				})
 				dispatch(
 					addMessage(
 						'alert-success',

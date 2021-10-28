@@ -12,8 +12,7 @@ export const addCheckout = async (name, description, unitPrice) => {
 	await await checkout.post(`/${user.id}`, {
 		name,
 		description,
-		unitPrice: unitPrice,
-		totalPrice: unitPrice,
+		unitPrice,
 		count: 1,
 	})
 }
@@ -24,8 +23,8 @@ export const checkoutTotalPrice = async (checkoutID, totalPrice) => {
 	await checkout.patch(`/${user.id}/${checkoutID}`, { totalPrice })
 }
 
-export const removeCheckoutItem = async (checkoutID) => {
-	await checkout.delete(`/${user.id}`, { checkoutID })
+export const removeCheckoutItem = async (id) => {
+	await checkout.delete(`/${user.id}/${id}`)
 }
 
 export const checkoutService = {

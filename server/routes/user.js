@@ -192,16 +192,17 @@ router.patch('/checkout/:id/:checkoutID', async (req, res) => {
 		})
 		.catch((e) => res.status(400).send(e))
 })
-router.delete('/checkout/:id', async (req, res) => {
+router.delete('/checkout/:id/:checkoutID', async (req, res) => {
+	console.log(req.params)
 	try {
-		const deleteCheckout = await User.findOneAndUpdate(
+		const deleteCheckout = await User.updateOne(
 			{
 				_id: req.params.id,
 			},
 			{
 				$pull: {
 					checkout: {
-						_id: req.body.id,
+						_id: req.params.checkoutID,
 					},
 				},
 			}
