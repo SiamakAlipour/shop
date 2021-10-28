@@ -14,6 +14,7 @@ function UsersManage() {
 	const username = useRef()
 	const password = useRef()
 	const email = useRef()
+	const admin = useRef()
 	const [visible, setVisible] = useState(false)
 	const [usersList, setUsersList] = useState([])
 	const [user, setUser] = useState({})
@@ -40,17 +41,20 @@ function UsersManage() {
 		await users.delete(`/${user._id}`)
 		hide()
 	}
-	const handleUserEdit = async (user, u = null, p = null, e = null) => {
+	const handleUserEdit = async (user, u = null, p = null, e = null, a) => {
 		const username = u ? u : user.username
 		const password = p ? p : user.password
 		const email = e ? e : user.email
-		await users.patch(`/${user._id}/${username}/${password}/${email}`)
+		const admin = a ? JSON.parse(a.toLowerCase()) : user.admin
+
+		await users.patch(`/${user._id}`, { username, password, email, admin })
 	}
+
 	useEffect(() => {
 		users.get('/').then((res) => {
 			setUsersList(res.data)
 		})
-	}, [usersList])
+	}, [])
 	useEffect(() => {
 		setSearchList(
 			usersList.filter((user) =>
@@ -125,7 +129,6 @@ function UsersManage() {
 							/>
 							<input
 								type='password'
-								placeholder={user.password}
 								className='form-control'
 								autoComplete='new-password'
 								ref={password}
@@ -136,6 +139,13 @@ function UsersManage() {
 								className='form-control'
 								ref={email}
 							/>
+							<select
+								className='form-select'
+								ref={admin}
+								defaultValue={user.admin}>
+								<option value='true'>admin</option>
+								<option value='false'>user</option>
+							</select>
 						</div>
 					)}
 					{!userEdit ? (
@@ -165,7 +175,8 @@ function UsersManage() {
 										user,
 										username.current.value,
 										password.current.value,
-										email.current.value
+										email.current.value,
+										admin.current.value
 									)
 								}>
 								ویرایش

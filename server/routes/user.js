@@ -87,17 +87,25 @@ router.delete('/:id', async (req, res) => {
 	}
 })
 // Edit user
-router.patch('/:id/:username/:password/:email', async (req, res) => {
-	const { id, username, password, email } = req.params
+router.patch('/:id', async (req, res) => {
+	const { id } = req.params
+	const { username, password, email, admin } = req.body
+
 	let finalPassword
 
 	const userEditFind = await User.findOne({ _id: id })
+
 	const usernameFind = await User.findOne({
 		username: username.toLowerCase(),
 	})
 
-	if (username !== userEditFind.username && usernameFind)
+	if (
+		username.toLowerCase() !== userEditFind.username.toLowerCase() &&
+		usernameFind
+	) {
+		console.log(true)
 		return res.status(400).send('این نام کاربری استفاده شده است')
+	}
 	if (password === userEditFind.password) {
 		finalPassword = userEditFind.password
 	} else {
@@ -113,6 +121,7 @@ router.patch('/:id/:username/:password/:email', async (req, res) => {
 					username: username.toLowerCase(),
 					password: finalPassword,
 					email: email.toLowerCase(),
+					admin,
 				},
 			}
 		)
