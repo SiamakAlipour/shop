@@ -103,7 +103,6 @@ router.patch('/:id', async (req, res) => {
 		username.toLowerCase() !== userEditFind.username.toLowerCase() &&
 		usernameFind
 	) {
-		console.log(true)
 		return res.status(400).send('این نام کاربری استفاده شده است')
 	}
 	if (password === userEditFind.password) {
@@ -202,7 +201,6 @@ router.patch('/checkout/:id/:checkoutID', async (req, res) => {
 		.catch((e) => res.status(400).send(e))
 })
 router.delete('/checkout/:id/:checkoutID', async (req, res) => {
-	console.log(req.params)
 	try {
 		const deleteCheckout = await User.updateOne(
 			{
@@ -218,6 +216,6 @@ router.delete('/checkout/:id/:checkoutID', async (req, res) => {
 		)
 		res.status(200).send('حذف شد')
 	} catch (error) {
-		res.status(400).send(error)
+		res.status(400).json({ error })
 	}
 })

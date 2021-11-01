@@ -14,6 +14,26 @@ const productReducer = (state = initialState, action) => {
 	switch (type) {
 		case PRODUCTS_ALL:
 			return { ...state, items: payload }
+		case PRODUCT_EDIT:
+			return {
+				...state,
+				items: state.items.map((item) =>
+					item._id !== payload.id
+						? item
+						: {
+								...item,
+								name: payload.formData.name,
+								description: payload.formData.description,
+								image: payload.formData.image,
+								price: payload.formData.price,
+						  }
+				),
+			}
+		case PRODUCT_DELETE:
+			return {
+				...state,
+				items: state.items.filter((state) => state._id !== payload.id),
+			}
 		default:
 			return state
 	}

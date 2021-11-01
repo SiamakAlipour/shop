@@ -2,8 +2,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import mongoose from 'mongoose'
-import fileUpload from 'express-fileupload'
-import bodyParser from 'body-parser'
 import { router as productRouter } from './routes/product.js'
 import { router as userRouter } from './routes/user'
 // import { router as uploadRouter } from './routes/upload'

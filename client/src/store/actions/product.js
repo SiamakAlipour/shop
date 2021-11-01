@@ -38,26 +38,77 @@ export const addProduct = (formData) => (dispatch) => {
 				type: MESSAGE_ADD,
 				payload: {
 					info: 'alert-danger',
-					message: error.response.data,
+					message: JSON.stringify(error.response.data, null, 4),
 				},
 			})
 			return Promise.reject()
 		}
 	)
 }
-export const editProduct = (id) => ({
-	type: PRODUCT_EDIT,
-	payload: {
-		id,
-	},
-})
+export const editProduct = (id, formData) => (dispatch) => {
+	return productService.editProduct(id, formData).then(
+		(data) => {
+			// data ra begir az backend + path image ta ba redux update koni
+			console.log(data)
+			dispatch({
+				type: PRODUCT_EDIT,
+				payload: {
+					id,
+					formData,
+				},
+			})
+			dispatch({
+				type: MESSAGE_ADD,
+				payload: {
+					info: 'alert-success',
+					message: 'کالای مورد نظر با موفقیت ویرایش شد.',
+				},
+			})
+			return Promise.resolve()
+		},
+		(err) => {
+			dispatch({
+				type: MESSAGE_ADD,
+				payload: {
+					info: 'alert-danger',
+					message: JSON.stringify(err.response.data, null, 4),
+				},
+			})
+			return Promise.reject()
+		}
+	)
+}
+export const deleteProduct = (id) => (dispatch) => {
+	return productService.deleteProduct(id).then(
+		(data) => {
+			dispatch({
+				type: MESSAGE_ADD,
+				payload: {
+					info: 'alert-success',
+					message: 'کالا با موفقیت حذف شد.',
+				},
+			})
+			dispatch({
+				type: PRODUCT_DELETE,
+				payload: {
+					id,
+				},
+			})
 
-export const deleteProduct = (id) => ({
-	type: PRODUCT_DELETE,
-	payload: {
-		id,
-	},
-})
+			return Promise.resolve()
+		},
+		(err) => {
+			dispatch({
+				type: MESSAGE_ADD,
+				payload: {
+					info: 'alert-danger',
+					message: JSON.stringify(err.response.data, null, 4),
+				},
+			})
+			return Promise.reject()
+		}
+	)
+}
 export const getProduct = (id) => ({
 	type: PRODUCT_GET,
 	payload: {

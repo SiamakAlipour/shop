@@ -8,11 +8,10 @@ import Pagination from '@material-ui/lab/Pagination'
 import { connect } from 'react-redux'
 import Loader from 'react-loader-spinner'
 import { allProducts } from '../store/actions/product'
-import { PRODUCT_ADD } from '../store/actions/types'
 
 function Feed({ allProducts, product }) {
 	const [productItems, setProductItems] = useState()
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(true)
 	const [currentPage, setCurrentPage] = useState(1)
 	const [postPerPage] = useState(9)
 	const [catValue, setCatValue] = useState('0')

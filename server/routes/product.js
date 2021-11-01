@@ -69,10 +69,10 @@ router.patch('/:id', upload.single('image'), async (req, res) => {
 			{ _id: req.params.id },
 			{
 				$set: {
-					name: req.params.name,
-					description: req.params.description,
+					name: req.body.name,
+					description: req.body.description,
 					image: req.file.path,
-					price: req.params.price,
+					price: req.body.price,
 				},
 			}
 		)
