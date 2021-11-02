@@ -1,10 +1,6 @@
 import express from 'express'
 import Product from '../models/Product.js'
 import { upload } from './upload'
-import multer from 'multer'
-import fs from 'fs'
-
-// import verifyToken from './verifyToken.js'
 
 export const router = express.Router()
 
@@ -14,6 +10,7 @@ router.post('/', upload.single('image'), async (req, res) => {
 		name: req.body.name,
 		description: req.body.description,
 		price: req.body.price,
+
 		image: req.file.filename,
 	})
 	try {
@@ -69,10 +66,10 @@ router.patch('/:id', upload.single('image'), async (req, res) => {
 			{ _id: req.params.id },
 			{
 				$set: {
-					name: req.params.name,
-					description: req.params.description,
+					name: req.body.name,
+					description: req.body.description,
 					image: req.file.path,
-					price: req.params.price,
+					price: req.body.price,
 				},
 			}
 		)
