@@ -3,7 +3,7 @@ import './styles/Footer.scss'
 function Footer() {
 	return (
 		<div className='footer'>
-			<h1>footer</h1>
+			<p> 1400 &copy;</p>
 		</div>
 	)
 }

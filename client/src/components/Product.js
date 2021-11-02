@@ -96,7 +96,7 @@ function Product({ id, name, image, description, price }) {
 	}
 	return (
 		<div className='product'>
-			{user.admin && (
+			{user?.admin && (
 				<div className='product__admin'>
 					{!edit ? (
 						<>
