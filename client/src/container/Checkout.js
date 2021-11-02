@@ -3,14 +3,12 @@ import './styles/Checkout.scss'
 import LoadingButton from '@mui/lab/LoadingButton'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import CheckoutItem from '../components/CheckoutItem'
-import { useSelector, useDispatch } from 'react-redux'
 import { allCheckout } from '../store/actions/checkout'
 import { connect } from 'react-redux'
 function Checkout({ allCheckout, checkout }) {
 	const [totalCost, setTotalCost] = useState(0)
 	const [loading, setLoading] = useState(false)
 	const [checkoutItem, setCheckoutItem] = useState()
-	const dispatch = useDispatch()
 	const handlePrice = (price) => {
 		let nf = new Intl.NumberFormat()
 		let pc = nf.format(price)

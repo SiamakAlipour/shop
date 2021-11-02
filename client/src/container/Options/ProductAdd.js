@@ -113,43 +113,6 @@ function ProductAdd() {
 					</Form>
 				)}
 			</Formik>
-			{/* <input
-				type='text'
-				className='form-control'
-				placeholder='نام کالا'
-				ref={productName}
-				required
-			/>
-			<input
-				type='text'
-				className='form-control'
-				placeholder='توضیحات کالا'
-				required
-				ref={productDescription}
-			/>
-			<input
-				type='file'
-				name='image'
-				className='form-control'
-				placeholder=''
-				onChange={handleFile}
-				required
-			/>
-			<input
-				type='text'
-				className='form-control'
-				placeholder='قیمت کالا'
-				value={price}
-				onChange={handleChange}
-				required
-				ref={priceInput}
-			/>
-			<input
-				type='button'
-				value='اضافه کردن کالا'
-				onClick={handleUpload}
-				className='btn btn-primary'
-			/> */}
 		</div>
 	)
 }

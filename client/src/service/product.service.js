@@ -10,13 +10,8 @@ const allProducts = async () => {
 const addProduct = async (formData) => {
 	await products.post('/', formData)
 }
-const editProduct = async (id, name, description, image, price) => {
-	await products.patch(`/${id}`, {
-		name,
-		description,
-		image,
-		price,
-	})
+const editProduct = async (id, formData) => {
+	await products.patch(`/${id}`, formData)
 }
 const deleteProduct = async (id) => {
 	await products.delete(`/${id}`)
