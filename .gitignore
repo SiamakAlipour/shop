@@ -25,3 +25,5 @@ client/node_modules
 /client/npm-debug.log*
 /client/yarn-debug.log*
 /client/yarn-error.log*
+
+/server/uploads/*
