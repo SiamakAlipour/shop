@@ -1,9 +1,9 @@
-.product {
+.productItem {
 	width: 330px;
 	height: auto;
 	background: white;
 	margin: 10px;
-	padding: 15px 5px;
+	padding: 10px 5px;
 	position: relative;
 	transition: all ease-in-out 0.4s;
 	border-radius: 3px;
@@ -18,7 +18,8 @@
 	&__admin {
 		width: 100%;
 		position: absolute;
-		background-color: rgb(238, 238, 238);
+		top: 7px;
+		background-color: rgb(216, 216, 216);
 		z-index: 10;
 		border-top-right-radius: 3px;
 		border-top-left-radius: 3px;
@@ -27,7 +28,7 @@
 	}
 	&:hover {
 		transform: scale(1.02);
-		.product__admin {
+		.productItem__admin {
 			// background-color: red;
 			transform: translateY(-30px);
 			opacity: 1;
@@ -79,7 +80,7 @@
 }
 
 @media screen and (max-width: 750px) {
-	.product {
+	.productItem {
 		width: 100%;
 	}
 }

@@ -1,42 +1,59 @@
-import React, { useState, useEffect } from 'react'
-import Product from '../components/Product'
-import './styles/Feed.scss'
-import InputLabel from '@material-ui/core/InputLabel'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
-import Pagination from '@material-ui/lab/Pagination'
-import { connect } from 'react-redux'
-import Loader from 'react-loader-spinner'
-import { allProducts } from '../store/actions/product'
+import React, { useState, useEffect } from 'react';
+import './styles/Feed.scss';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import Pagination from '@material-ui/lab/Pagination';
+import { connect } from 'react-redux';
+import Loader from 'react-loader-spinner';
+import { allProducts } from '../store/actions/product';
+import ProductItem from '../components/ProductItem';
+import Product from './Product';
 
 function Feed({ allProducts, product }) {
-	const [productItems, setProductItems] = useState()
-	const [loading, setLoading] = useState(true)
-	const [currentPage, setCurrentPage] = useState(1)
-	const [postPerPage] = useState(9)
-	const [catValue, setCatValue] = useState('0')
-
+	const [productItems, setProductItems] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [postPerPage] = useState(6);
+	const [catValue, setCatValue] = useState('0');
+	// const [currentPosts, setCurrentPosts] = useState([]);
 	const handleCatValue = (e) => {
-		setCatValue(e.currentTarget.attributes['data-value'].value)
-	}
+		setCatValue(e.currentTarget.attributes['data-value'].value);
+	};
 	useEffect(() => {
-		allProducts()
+		allProducts();
 		// eslint-disable-next-line
-	}, [])
-	useEffect(() => {
-		setProductItems(product)
-		if (productItems) {
-			setLoading(false)
+	}, []);
+	const indexOfLastPost = currentPage * postPerPage;
+	const indexOfFirstPost = indexOfLastPost - postPerPage;
+
+	// useEffect(() => {
+		
+	// }, [product]);
+	useEffect(()=> {
+		setProductItems([...product]);
+		if (product) {
+			setLoading(false);
 		}
-		// eslint-disable-next-line
-	}, [product])
 
-	const indexOfLastPost = currentPage * postPerPage
-	const indexOfFirstPost = indexOfLastPost - postPerPage
+		if (catValue === '0') {
+			let sortByDate = product.sort(
+				(a, b) => new Date(b.date) - new Date(a.date)
+			);
+			setProductItems([...sortByDate]);
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+		} else if (catValue === '1') {
+			let sortMoney = product.sort((a, b) => a.price - b.price);
+			setProductItems([...sortMoney].reverse());
+			
+		} else if (catValue === '2') {
+			let sortMoney = product.sort((a, b) => a.price - b.price );
+			setProductItems([...sortMoney]);
+		}
 
-	const currentPosts = productItems?.slice(indexOfFirstPost, indexOfLastPost)
-
-	const paginate = (event, value) => setCurrentPage(value)
+	},[product,catValue])
+	const currentPosts = productItems?.slice(indexOfFirstPost, indexOfLastPost);
+	const paginate = (event, value) => setCurrentPage(value);
 	return (
 		<div className='feed'>
 			<div className='feed__header'>
@@ -60,7 +77,13 @@ function Feed({ allProducts, product }) {
 							style={{ fontFamily: 'IRANSans' }}
 							value='1'
 							onClick={handleCatValue}>
-							Twenty
+							گران ترین
+						</MenuItem>
+						<MenuItem
+							style={{ fontFamily: 'IRANSans' }}
+							value='2'
+							onClick={handleCatValue}>
+							ارزان ترین
 						</MenuItem>
 					</Select>
 				</div>
@@ -75,19 +98,18 @@ function Feed({ allProducts, product }) {
 					/>
 				) : (
 					<div className='feed__products'>
+						{/* <Product currentPosts={currentPosts} /> */}
 						<div className='feed__productsList'>
-							{currentPosts?.map((product) => {
-								return (
-									<Product
-										key={product._id}
-										id={product._id}
-										name={product.name}
-										image={product.image}
-										price={product.price}
-										description={product.description}
-									/>
-								)
-							})}
+							{currentPosts.map((product) => (
+								<ProductItem
+									key={product._id}
+									id={product._id}
+									name={product.name}
+									image={product.image}
+									price={product.price}
+									description={product.description}
+								/>
+							))}
 						</div>
 						<Pagination
 							style={{ direction: 'ltr' }}
@@ -100,15 +122,15 @@ function Feed({ allProducts, product }) {
 				)}
 			</div>
 		</div>
-	)
+	);
 }
 
 const mapStateToProps = (state) => ({
 	product: state.product.items,
-})
+});
 const mapDispatchToProps = (dispatch) => {
 	return {
 		allProducts: () => dispatch(allProducts()),
-	}
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Feed)
+	};
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Feed);
