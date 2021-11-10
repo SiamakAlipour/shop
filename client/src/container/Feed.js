@@ -7,7 +7,6 @@ import Pagination from '@material-ui/lab/Pagination';
 import { connect } from 'react-redux';
 import Loader from 'react-loader-spinner';
 import { allProducts } from '../store/actions/product';
-import ProductItem from '../components/ProductItem';
 import Product from './Product';
 
 function Feed({ allProducts, product }) {
@@ -16,7 +15,6 @@ function Feed({ allProducts, product }) {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [postPerPage] = useState(6);
 	const [catValue, setCatValue] = useState('0');
-	// const [currentPosts, setCurrentPosts] = useState([]);
 	const handleCatValue = (e) => {
 		setCatValue(e.currentTarget.attributes['data-value'].value);
 	};
@@ -27,10 +25,7 @@ function Feed({ allProducts, product }) {
 	const indexOfLastPost = currentPage * postPerPage;
 	const indexOfFirstPost = indexOfLastPost - postPerPage;
 
-	// useEffect(() => {
-		
-	// }, [product]);
-	useEffect(()=> {
+	useEffect(() => {
 		setProductItems([...product]);
 		if (product) {
 			setLoading(false);
@@ -45,13 +40,11 @@ function Feed({ allProducts, product }) {
 		} else if (catValue === '1') {
 			let sortMoney = product.sort((a, b) => a.price - b.price);
 			setProductItems([...sortMoney].reverse());
-			
 		} else if (catValue === '2') {
-			let sortMoney = product.sort((a, b) => a.price - b.price );
+			let sortMoney = product.sort((a, b) => a.price - b.price);
 			setProductItems([...sortMoney]);
 		}
-
-	},[product,catValue])
+	}, [product, catValue]);
 	const currentPosts = productItems?.slice(indexOfFirstPost, indexOfLastPost);
 	const paginate = (event, value) => setCurrentPage(value);
 	return (
@@ -98,19 +91,8 @@ function Feed({ allProducts, product }) {
 					/>
 				) : (
 					<div className='feed__products'>
-						{/* <Product currentPosts={currentPosts} /> */}
-						<div className='feed__productsList'>
-							{currentPosts.map((product) => (
-								<ProductItem
-									key={product._id}
-									id={product._id}
-									name={product.name}
-									image={product.image}
-									price={product.price}
-									description={product.description}
-								/>
-							))}
-						</div>
+						<Product currentPosts={currentPosts} />
+
 						<Pagination
 							style={{ direction: 'ltr' }}
 							count={Math.ceil(

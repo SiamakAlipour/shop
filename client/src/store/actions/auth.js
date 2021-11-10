@@ -1,4 +1,4 @@
-import { userService } from '../../service/user.service'
+import { userService } from '../../service/user.service';
 
 import {
 	LOGIN_FAILED,
@@ -8,78 +8,76 @@ import {
 	REGISTER_FAILED,
 	REGISTER_SUCCESS,
 	USER_EDIT,
-} from './types'
+} from './types';
 export const register = (username, password, email) => (dispatch) => {
 	return userService.register(username, password, email).then(
 		(res) => {
 			dispatch({
 				type: REGISTER_SUCCESS,
-			})
+			});
 			dispatch({
 				type: MESSAGE_ADD,
 				payload: {
 					info: 'alert-success',
 					message: 'ثبت نام با موفقیت انجام شد',
 				},
-			})
+			});
 
-			return Promise.resolve()
+			return Promise.resolve();
 		},
 		(error) => {
-			const message = error.response.data
-
 			dispatch({
 				type: REGISTER_FAILED,
-			})
+			});
 
-			dispatch({
-				type: MESSAGE_ADD,
-				payload: {
-					info: 'alert-danger',
-					message: message,
-				},
-			})
-			return Promise.reject()
-		}
-	)
-}
-
-export const login = (username, password) => (dispatch) => {
-	return userService.login(username, password).then(
-		(data) => {
-			console.log('Userservice login')
-			dispatch({
-				type: LOGIN_SUCCESS,
-				payload: {
-					user: data,
-				},
-			})
-			return Promise.resolve()
-		},
-		(error) => {
-			dispatch({
-				type: LOGIN_FAILED,
-			})
 			dispatch({
 				type: MESSAGE_ADD,
 				payload: {
 					info: 'alert-danger',
 					message: error.response.data,
 				},
-			})
-			return Promise.reject()
+			});
+			return Promise.reject();
 		}
-	)
-}
+	);
+};
+
+export const login = (username, password) => (dispatch) => {
+	return userService.login(username, password).then(
+		(data) => {
+			console.log('Userservice login');
+			dispatch({
+				type: LOGIN_SUCCESS,
+				payload: {
+					user: data,
+				},
+			});
+			return Promise.resolve();
+		},
+		(error) => {
+			dispatch({
+				type: LOGIN_FAILED,
+			});
+			dispatch({
+				type: MESSAGE_ADD,
+				payload: {
+					info: 'alert-danger',
+					message: error.response.data,
+				},
+			});
+			return Promise.reject();
+		}
+	);
+};
 
 export const logout = () => (dispatch) => {
-	userService.logout()
+	userService.logout();
 	dispatch({
 		type: LOGOUT,
-	})
-}
+	});
+};
 
 export const editUser = (user) => ({
 	type: USER_EDIT,
 	payload: user,
-})
+});

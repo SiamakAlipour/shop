@@ -1,32 +1,33 @@
-import Header from './Header'
-import React, { useEffect } from 'react'
-import './styles/App.scss'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Header from './Header';
+import React, { useEffect } from 'react';
+import './styles/App.scss';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import Main from './Main'
-import Footer from './Footer'
-import Register from './Register'
-import Login from './Login'
-import Account from './Account'
-import Option from './Option'
-import Sidebar from './Sidebar'
-import Checkout from './Checkout'
-import Message from '../components/Message'
-import { useSelector, useDispatch } from 'react-redux'
-import AuthVerify from '../common/AuthVerify'
-import { userService } from '../service/user.service'
-import { allCheckout } from '../store/actions/checkout'
-import { allProducts } from '../store/actions/product'
+import Main from './Main';
+import Footer from './Footer';
+import Register from './Register';
+import Login from './Login';
+import Account from './Account';
+import Option from './Option';
+import Sidebar from './Sidebar';
+import Checkout from './Checkout';
+import Message from '../components/Message';
+import { useSelector, useDispatch } from 'react-redux';
+import AuthVerify from '../common/AuthVerify';
+import { userService } from '../service/user.service';
+import { allCheckout } from '../store/actions/checkout';
+import { allProducts } from '../store/actions/product';
+import SearchPart from './SearchPart';
 function App() {
-	const [info, message] = useSelector((state) => state.message)
-	const dispatch = useDispatch()
-	const user = JSON.parse(localStorage.getItem('user'))
+	const [info, message] = useSelector((state) => state.message);
+	const dispatch = useDispatch();
+	const user = JSON.parse(localStorage.getItem('user'));
 
 	useEffect(() => {
 		if (user) {
-			dispatch(allCheckout())
+			dispatch(allCheckout());
 		}
-	}, [])
+	}, []);
 	return (
 		<Router>
 			<div className='App'>
@@ -46,6 +47,9 @@ function App() {
 					<Route path='/account'>
 						<Account />
 					</Route>
+					<Route path='/search'>
+						<SearchPart />
+					</Route>
 					<Route path='/'>
 						<Main />
 						<Footer />
@@ -58,7 +62,7 @@ function App() {
 				<AuthVerify logOut={userService.logout} />
 			</div>
 		</Router>
-	)
+	);
 }
 
-export default App
+export default App;

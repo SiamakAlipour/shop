@@ -4,16 +4,16 @@ import {
 	PRODUCT_DELETE,
 	PRODUCTS_ALL,
 	PRODUCT_GET,
-} from '../actions/types'
-import { v4 } from 'uuid'
+} from '../actions/types';
+import { v4 } from 'uuid';
 const initialState = {
 	items: [],
-}
+};
 const productReducer = (state = initialState, action) => {
-	const { type, payload } = action
+	const { type, payload } = action;
 	switch (type) {
 		case PRODUCTS_ALL:
-			return { ...state, items: payload }
+			return { ...state, items: payload };
 		case PRODUCT_EDIT:
 			return {
 				...state,
@@ -28,15 +28,15 @@ const productReducer = (state = initialState, action) => {
 								price: payload.formData.price,
 						  }
 				),
-			}
+			};
 		case PRODUCT_DELETE:
 			return {
 				...state,
 				items: state.items.filter((state) => state._id !== payload.id),
-			}
+			};
 		default:
-			return state
+			return state;
 	}
-}
+};
 
-export default productReducer
+export default productReducer;

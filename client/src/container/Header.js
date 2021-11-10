@@ -1,23 +1,23 @@
-import React, { useRef, useState, useEffect } from 'react'
-import './styles/Header.scss'
+import React, { useRef, useState, useEffect } from 'react';
+import './styles/Header.scss';
 // Material-ui
-import SearchIcon from '@material-ui/icons/Search'
-import { useDispatch, useSelector } from 'react-redux'
-import { addSearch } from '../store/actions/search'
-import { Link } from 'react-router-dom'
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket'
-import IconButton from '@mui/material/IconButton'
+import SearchIcon from '@material-ui/icons/Search';
+import { useDispatch, useSelector } from 'react-redux';
+import { addSearch } from '../store/actions/search';
+import { Link } from 'react-router-dom';
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import IconButton from '@mui/material/IconButton';
 // import authHeader from '../service/auth-header'
 function Header() {
-	const checkout = useSelector((state) => state.checkout.items)
-	const { isLoggedIn } = useSelector((state) => state.auth)
-	const searchInput = useRef()
-	const dispatch = useDispatch()
+	const checkout = useSelector((state) => state.checkout.items);
+	const { isLoggedIn } = useSelector((state) => state.auth);
+	const searchInput = useRef();
+	const dispatch = useDispatch();
 	const handleSubmit = (e) => {
-		e.preventDefault()
-		const searchValue = searchInput.current.value
-		dispatch(addSearch(searchValue))
-	}
+		e.preventDefault();
+		const searchValue = searchInput.current.value;
+		dispatch(addSearch(searchValue));
+	};
 
 	return (
 		<div className='header'>
@@ -74,7 +74,7 @@ function Header() {
 				</ul>
 			</div>
 		</div>
-	)
+	);
 }
 
-export default Header
+export default Header;

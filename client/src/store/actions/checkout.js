@@ -5,22 +5,22 @@ import {
 	CHECKOUT_REMOVE,
 	CHECKOUT_TOTALPRICE,
 	MESSAGE_ADD,
-} from './types'
-import { checkoutService } from '../../service/checkout.service'
-import axios from 'axios'
-const user = JSON.parse(localStorage.getItem('user'))
+} from './types';
+import { checkoutService } from '../../service/checkout.service';
+import axios from 'axios';
+const user = JSON.parse(localStorage.getItem('user'));
 
 const checkout = axios.create({
 	baseURL: 'http://127.0.0.1:8001/api/users/checkout',
-})
+});
 export const allCheckout = () => async (dispatch) => {
 	await checkout.get(`/${user.id}`).then((res) => {
 		dispatch({
 			type: CHECKOUT_ALL,
 			payload: res.data,
-		})
-	})
-}
+		});
+	});
+};
 export const addCheckout =
 	(name, description, unitPrice) => async (dispatch) => {
 		return checkoutService.addCheckout(name, description, unitPrice).then(
@@ -32,15 +32,21 @@ export const addCheckout =
 						description,
 						unitPrice,
 					},
-				})
-				return Promise.resolve()
+				});
+				return Promise.resolve();
 			},
 			(err) => {
-				console.log(err.response.data)
-				return Promise.reject()
+				dispatch({
+					type: CHECKOUT_ADD,
+					payload: {
+						info: 'alert-danger',
+						message: err.response.data,
+					},
+				});
+				return Promise.reject();
 			}
-		)
-	}
+		);
+	};
 
 export const checkoutCount = (id, count) => async (dispatch) => {
 	return checkoutService.checkoutCount(id, count).then(
@@ -51,37 +57,49 @@ export const checkoutCount = (id, count) => async (dispatch) => {
 					id,
 					count,
 				},
-			})
-			return Promise.resolve()
+			});
+			return Promise.resolve();
 		},
 		(err) => {
-			console.log(err.response.data)
-			return Promise.reject()
+			dispatch({
+				type: CHECKOUT_ADD,
+				payload: {
+					info: 'alert-danger',
+					message: err.response.data,
+				},
+			});
+			return Promise.reject();
 		}
-	)
-}
+	);
+};
 export const checkoutTotalPrice = (id, totalPrice) => ({
 	type: CHECKOUT_TOTALPRICE,
 	payload: {
 		id,
 		totalPrice,
 	},
-})
+});
 export const removeCheckoutItem = (id) => (dispatch) => {
 	return checkoutService.removeCheckoutItem(id).then(
 		(res) => {
-			console.log(res)
+			console.log(res);
 			dispatch({
 				type: CHECKOUT_REMOVE,
 				payload: {
 					id,
 				},
-			})
-			return Promise.resolve()
+			});
+			return Promise.resolve();
 		},
 		(err) => {
-			console.log(err.response.data)
-			return Promise.reject()
+			dispatch({
+				type: CHECKOUT_ADD,
+				payload: {
+					info: 'alert-danger',
+					message: err.response.data,
+				},
+			});
+			return Promise.reject();
 		}
-	)
-}
+	);
+};
