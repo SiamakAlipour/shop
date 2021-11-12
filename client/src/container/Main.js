@@ -1,23 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Ads from '../components/Ads';
 import Sidebar from './Sidebar';
 import Feed from './Feed';
 import './styles/Main.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeMessage } from '../store/actions/message';
-import Message from '../components/Message';
-import { allCheckout } from '../store/actions/checkout';
 import SearchPart from './SearchPart';
-// import { userService } from '../service/user.service'
+import { useLocation, useHistory } from 'react-router-dom';
+import { addSearch } from '../store/actions/search';
+
 // import axios from 'axios'
+
 function Main() {
+	// let location = useQuery();
+	const history = useHistory();
+	const searchID = useLocation().search;
+	const name = new URLSearchParams(searchID).get('value');
 	const [info, message] = useSelector((state) => state.message);
 	const search = useSelector((state) => state.search);
 	const dispatch = useDispatch();
+
 	useEffect(() => {
-		console.log(search.length);
-		console.log(search);
-	}, []);
+		if (name) dispatch(addSearch(name.replace(/-/g, ' ')));
+		else dispatch(addSearch(''));
+	}, [name]);
 	return (
 		<div className='main'>
 			{/*! ADS & Banner | Main Header */}

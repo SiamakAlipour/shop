@@ -7,16 +7,20 @@ import { addSearch } from '../store/actions/search';
 import { Link } from 'react-router-dom';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import IconButton from '@mui/material/IconButton';
-// import authHeader from '../service/auth-header'
+import { useHistory } from 'react-router-dom';
+
 function Header() {
 	const checkout = useSelector((state) => state.checkout.items);
 	const { isLoggedIn } = useSelector((state) => state.auth);
 	const searchInput = useRef();
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const searchValue = searchInput.current.value;
 		dispatch(addSearch(searchValue));
+		history.push(`/search?value=${searchValue.replace(/\s/g, '-')}`);
+		searchInput.current.value = '';
 	};
 
 	return (

@@ -16,13 +16,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import AuthVerify from '../common/AuthVerify';
 import { userService } from '../service/user.service';
 import { allCheckout } from '../store/actions/checkout';
-import { allProducts } from '../store/actions/product';
-import SearchPart from './SearchPart';
+
 function App() {
 	const [info, message] = useSelector((state) => state.message);
 	const dispatch = useDispatch();
 	const user = JSON.parse(localStorage.getItem('user'));
-
+	const search = useSelector((state) => state.search);
 	useEffect(() => {
 		if (user) {
 			dispatch(allCheckout());
@@ -47,10 +46,9 @@ function App() {
 					<Route path='/account'>
 						<Account />
 					</Route>
-					<Route path='/search'>
-						<SearchPart />
-					</Route>
-					<Route path='/'>
+					<Route path={`/search/value=${search}`} />
+
+					<Route path='/' component={App}>
 						<Main />
 						<Footer />
 					</Route>
