@@ -8,14 +8,11 @@ import SearchPart from './SearchPart';
 import { useLocation, useHistory } from 'react-router-dom';
 import { addSearch } from '../store/actions/search';
 
-// import axios from 'axios'
-
 function Main() {
-	// let location = useQuery();
 	const history = useHistory();
 	const searchID = useLocation().search;
 	const name = new URLSearchParams(searchID).get('value');
-	const [info, message] = useSelector((state) => state.message);
+
 	const search = useSelector((state) => state.search);
 	const dispatch = useDispatch();
 
@@ -38,7 +35,7 @@ function Main() {
 			{/* Content */}
 			<div className='main__content'>
 				{/* Feed */}
-				{search ? <SearchPart /> : <Feed />}
+				{search ? <SearchPart query={name} /> : <Feed />}
 				{/* Sidebar */}
 				<Sidebar />
 			</div>
