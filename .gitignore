@@ -29,3 +29,4 @@ client/node_modules
 /server/uploads/*.jpg
 /server/uploads/*.png
 /server/uploads/*.jpeg  
+node_modules

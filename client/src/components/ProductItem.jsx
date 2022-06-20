@@ -1,16 +1,21 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect, useRef } from 'react';
-import 'bootstrap/dist/css/bootstrap.css';
-import './styles/ProductItem.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
-import { useSelector, useDispatch, connect } from 'react-redux';
-import { addCheckout, checkoutCount, checkoutTotalPrice } from '../store/actions/checkout';
+
+import { addCheckout } from '../store/actions/checkout';
 import { addMessage } from '../store/actions/message';
 import { CHECKOUT_COUNT } from '../store/actions/types';
 import { deleteProduct, editProduct } from '../store/actions/product';
+
+import './styles/ProductItem.scss';
+
 function ProductItem({ id, name, image, description, price }) {
   const [priceComma, setPriceComma] = useState(price);
   const [edit, setEdit] = useState(false);
@@ -49,8 +54,8 @@ function ProductItem({ id, name, image, description, price }) {
   };
   const handleCheckout = () => {
     if (auth.isLoggedIn) {
-      if (checkout?.some((checkout) => checkout.name === name)) {
-        let checkoutItemIndex = checkout.findIndex((item) => item.name === name);
+      if (checkout.some((co) => co.name === name)) {
+        const checkoutItemIndex = checkout.findIndex((item) => item.name === name);
         dispatch(addCheckout(name, description, price));
         dispatch({
           type: CHECKOUT_COUNT,
@@ -75,14 +80,14 @@ function ProductItem({ id, name, image, description, price }) {
       );
     }
   };
-  const configImage = (image) => {
-    const imageName = image?.split('/');
+  const configImage = (i) => {
+    const imageName = i.split('/');
 
-    return 'http://localhost:8001/uploads/' + imageName[imageName?.length - 1];
+    return `http://localhost:8001/uploads/${imageName[imageName.length - 1]}`;
   };
   return (
     <div className="productItem">
-      {user?.admin && (
+      {user.admin && (
         <div className="productItem__admin">
           {!edit ? (
             <>
@@ -145,7 +150,9 @@ function ProductItem({ id, name, image, description, price }) {
               ref={priceInput}
               required
             />
-            <button className="btn btn-primary">ویرایش</button>
+            <button type="button" className="btn btn-primary">
+              ویرایش
+            </button>
           </form>
         </div>
       )}
@@ -153,4 +160,11 @@ function ProductItem({ id, name, image, description, price }) {
   );
 }
 
+ProductItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+};
 export default ProductItem;

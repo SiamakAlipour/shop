@@ -3,7 +3,7 @@ import Widget from '../components/Widget';
 import './styles/Sidebar.scss';
 
 function Sidebar() {
-  const socialIcons = (
+  const SocialIcons = (
     <div className="widget__content">
       <p>ما را در شبکه های اجتماعی دنبال کنید</p>
       <div className="widget__icons">
@@ -29,8 +29,8 @@ function Sidebar() {
 
   return (
     <div className="sidebar">
-      <Widget title="شبکه های اجتماعی" content={socialIcons} />
-      <Widget title="شبکه های اجتماعی" content={socialIcons} />
+      <Widget title="شبکه های اجتماعی" Content={SocialIcons} />
+      <Widget title="شبکه های اجتماعی" Content={SocialIcons} />
     </div>
   );
 }

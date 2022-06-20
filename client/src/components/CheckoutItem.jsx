@@ -1,16 +1,16 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './styles/CheckoutItem.scss';
+import React, { useState, useRef } from 'react';
+
+import { useDispatch } from 'react-redux';
+import PropTypes from 'prop-types';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  removeCheckoutItem,
-  checkoutCount,
-  checkoutTotalPrice,
-  allCheckout,
-} from '../store/actions/checkout';
+
+import { removeCheckoutItem, checkoutCount, checkoutTotalPrice } from '../store/actions/checkout';
+
 import { addMessage } from '../store/actions/message';
-import Message from './Message';
+
+import './styles/CheckoutItem.scss';
 
 function CheckoutItem({ id, name, description, unitCost, countCh }) {
   const countInput = useRef();
@@ -18,16 +18,16 @@ function CheckoutItem({ id, name, description, unitCost, countCh }) {
   const [totalTemp, setTotalTemp] = useState(unitCost * countCh);
   const dispatch = useDispatch();
   const handleTotalCost = (e) => {
-    let totalCostValue = countInput.current.value * unitCost;
+    const totalCostValue = countInput.current.value * unitCost;
     setCount(e.target.value);
     setTotalTemp(totalCostValue);
-    dispatch(checkoutCount(id, parseInt(countInput.current.value)));
+    dispatch(checkoutCount(id, parseInt(countInput.current.value, 10)));
     dispatch(checkoutTotalPrice(id, totalCostValue));
   };
 
   const handlePrice = (price) => {
-    var nf = new Intl.NumberFormat();
-    let pc = nf.format(price);
+    const nf = new Intl.NumberFormat();
+    const pc = nf.format(price);
     return pc;
   };
   return (
@@ -68,5 +68,13 @@ function CheckoutItem({ id, name, description, unitCost, countCh }) {
     </div>
   );
 }
+
+CheckoutItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  unitCost: PropTypes.number.isRequired,
+  countCh: PropTypes.number.isRequired,
+};
 
 export default CheckoutItem;
