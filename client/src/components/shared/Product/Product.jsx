@@ -3,11 +3,11 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import ProductItem from '../../ProductItem';
+import ProductItem from './ProductItem';
 
-import './styles/Product.scss';
+import './Product.scss';
 
-function Product({ currentPosts }) {
+const Product = ({ currentPosts }) => {
   React.useEffect(() => {}, [currentPosts]);
   return (
     <div className="product">
@@ -23,7 +23,7 @@ function Product({ currentPosts }) {
       ))}
     </div>
   );
-}
+};
 
 Product.propTypes = {
   currentPosts: PropTypes.objectOf({

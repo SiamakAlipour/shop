@@ -1,12 +1,10 @@
 import React from 'react';
-import './styles/Footer.scss';
+import './Footer.scss';
 
-function Footer() {
-  return (
-    <div className="footer">
-      <p> 1400 &copy;</p>
-    </div>
-  );
-}
+const Footer = () => (
+  <div className="footer">
+    <p> 1400 &copy;</p>
+  </div>
+);
 
 export default Footer;

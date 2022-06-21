@@ -8,14 +8,14 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import Pagination from '@material-ui/lab/Pagination';
 
-import Product from './Product';
+import Product from '../../../components/shared/Product/Product';
 
-import { allProducts } from '../store/actions/product';
+import { allProducts } from '../../../store/actions/product';
 
-import './styles/Feed.scss';
+import './Feed.scss';
 
 // eslint-disable-next-line no-shadow
-function Feed({ allProducts, product }) {
+const Feed = ({ allProducts, product }) => {
   const [productItems, setProductItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -88,7 +88,7 @@ function Feed({ allProducts, product }) {
       </div>
     </div>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   product: state.product.items,

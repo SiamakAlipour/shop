@@ -9,7 +9,7 @@ import { addProduct } from '../../../../store/actions/product';
 
 import './ProductAdd.scss';
 
-function ProductAdd() {
+const ProductAdd = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [price, setPrice] = useState();
   const dispatch = useDispatch();
@@ -102,6 +102,6 @@ function ProductAdd() {
       </Formik>
     </div>
   );
-}
+};
 
 export default ProductAdd;

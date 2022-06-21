@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 
-import { login } from '../store/actions/auth';
+import { login } from '../../store/actions/auth';
 
-import './styles/Login.scss';
+import './Login.scss';
 
-function Login({ isLoggedIn }) {
+const Login = ({ isLoggedIn }) => {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
@@ -95,7 +95,7 @@ function Login({ isLoggedIn }) {
       </div>
     </div>
   );
-}
+};
 
 const mapStateToProps = (state) => {
   const { isLoggedIn } = state.auth;

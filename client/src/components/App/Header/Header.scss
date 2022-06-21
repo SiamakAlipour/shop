@@ -1,114 +1,114 @@
 .header {
-	position: relative;
-	width: 100%;
-	height: auto;
-	background-color: white;
-	box-shadow: rgb(0 0 0 / 4%) 0 7px 8px 0;
-	padding: 5px 0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center !important;
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 4%) 0 7px 8px 0;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center !important;
 
-	.fixed {
-		position: fixed;
-	}
-	&__wrapper {
-		flex: 0.8;
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-		.header__logo {
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
-			background-color: #212121;
-			margin-right: 50px;
-		}
+  .fixed {
+    position: fixed;
+  }
+  &__wrapper {
+    flex: 0.8;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .header__logo {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #212121;
+      margin-right: 50px;
+    }
 
-		.header__searchBox {
-			display: flex;
-			align-items: center;
-			width: 40%;
-			border: 1px solid gray;
-			border-radius: 20px;
-			padding: 5px;
+    .header__searchBox {
+      display: flex;
+      align-items: center;
+      width: 40%;
+      border: 1px solid gray;
+      border-radius: 20px;
+      padding: 5px;
 
-			.MuiSvgIcon-root {
-				color: gray;
-			}
-			input {
-				border: none;
-				outline: none;
-				width: 100%;
-				line-height: 25px;
-				padding-right: 5px;
-				font-family: IRANSans;
-				font-weight: bold;
-			}
-		}
-	}
+      .MuiSvgIcon-root {
+        color: gray;
+      }
+      input {
+        border: none;
+        outline: none;
+        width: 100%;
+        line-height: 25px;
+        padding-right: 5px;
+        font-family: IRANSans;
+        font-weight: bold;
+      }
+    }
+  }
 
-	&__basketIcon {
-		position: relative;
-	}
-	&__basketBadge {
-		position: absolute;
-		top: 20px;
-		left: 20px;
-		width: 25px;
-		height: 25px;
-		display: grid;
-		place-items: center;
-		background-color: rgb(0, 151, 0);
-		border-radius: 50%;
-		font-size: 13px;
-		color: #212121;
-	}
-	&__loginRegister {
-		flex: 0.2;
-		margin-left: 50px;
+  &__basketIcon {
+    position: relative;
+  }
+  &__basketBadge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 25px;
+    height: 25px;
+    display: grid;
+    place-items: center;
+    background-color: rgb(0, 151, 0);
+    border-radius: 50%;
+    font-size: 13px;
+    color: #212121;
+  }
+  &__loginRegister {
+    flex: 0.2;
+    margin-left: 50px;
 
-		ul {
-			list-style: none;
-			display: flex;
-			align-items: center;
-			margin: inherit;
-			a {
-				text-decoration: none;
-				color: #212121;
-				li {
-					margin-left: 20px;
-					> button {
-						color: #464646;
-					}
-				}
-			}
-		}
-	}
+    ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      margin: inherit;
+      a {
+        text-decoration: none;
+        color: #212121;
+        li {
+          margin-left: 20px;
+          > button {
+            color: #464646;
+          }
+        }
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 960px) {
-	.header {
-		flex-direction: column;
-		align-items: center;
-		overflow: hidden;
-		position: relative;
+  .header {
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
 
-		.header__basketIcon {
-			position: absolute;
-			left: 10px;
-			top: 0px;
-		}
-		.header__searchBox {
-			order: 2;
-			width: 100%;
-			border-radius: 0px;
-		}
-		.header__loginRegister {
-			order: -1;
-			margin-left: 0px;
-			margin-bottom: 5px;
-		}
-	}
+    .header__basketIcon {
+      position: absolute;
+      left: 10px;
+      top: 0px;
+    }
+    .header__searchBox {
+      order: 2;
+      width: 100%;
+      border-radius: 0px;
+    }
+    .header__loginRegister {
+      order: -1;
+      margin-left: 0px;
+      margin-bottom: 5px;
+    }
+  }
 }

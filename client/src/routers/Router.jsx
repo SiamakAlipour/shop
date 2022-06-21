@@ -9,7 +9,7 @@ import Login from '../pages/Login';
 import Account from '../pages/Account/Account';
 import Checkout from '../pages/Checkout/Checkout';
 
-function Router() {
+const Router = () => {
   const search = useSelector((state) => state.search);
 
   return (
@@ -36,6 +36,6 @@ function Router() {
       {/* Products */}
     </Switch>
   );
-}
+};
 
 export default Router;

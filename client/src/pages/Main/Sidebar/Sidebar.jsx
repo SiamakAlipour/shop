@@ -1,8 +1,8 @@
 import React from 'react';
-import Widget from '../components/Widget';
-import './styles/Sidebar.scss';
+import Widget from './Widget';
+import './Sidebar.scss';
 
-function Sidebar() {
+const Sidebar = () => {
   const SocialIcons = (
     <div className="widget__content">
       <p>ما را در شبکه های اجتماعی دنبال کنید</p>
@@ -33,6 +33,6 @@ function Sidebar() {
       <Widget title="شبکه های اجتماعی" Content={SocialIcons} />
     </div>
   );
-}
+};
 
 export default Sidebar;

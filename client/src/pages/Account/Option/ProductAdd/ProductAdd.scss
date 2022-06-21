@@ -1,19 +1,19 @@
 .productAdd {
-	width: 100%;
-	height: auto;
-	padding: 30px;
-	form > input,
-	button {
-		width: 50%;
-		margin: auto;
-		margin-top: 20px;
-	}
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  form > input,
+  button {
+    width: 50%;
+    margin: auto;
+    margin-top: 20px;
+  }
 }
 
 @media screen and (max-width: 960px) {
-	.productAdd {
-		> input {
-			width: 100%;
-		}
-	}
+  .productAdd {
+    > input {
+      width: 100%;
+    }
+  }
 }

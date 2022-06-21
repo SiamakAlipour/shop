@@ -1,15 +1,15 @@
 .sidebar {
-	width: 100%;
-	flex: 0.28;
-	border-radius: 3px;
+  width: 100%;
+  flex: 0.28;
+  border-radius: 3px;
 
-	margin-right: 10px;
-	padding: 10px 0;
-	border-radius: 3px;
-	margin-top: -20px;
+  margin-right: 10px;
+  padding: 10px 0;
+  border-radius: 3px;
+  margin-top: -20px;
 }
 @media screen and (max-width: 960px) {
-	.sidebar {
-		margin-right: 0px;
-	}
+  .sidebar {
+    margin-right: 0px;
+  }
 }

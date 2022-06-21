@@ -14,9 +14,9 @@ import { addMessage } from '../../../../store/actions/message';
 import { CHECKOUT_COUNT } from '../../../../store/actions/types';
 import { deleteProduct, editProduct } from '../../../../store/actions/product';
 
-import './styles/ProductItem.scss';
+import './ProductItem.scss';
 
-function ProductItem({ id, name, image, description, price }) {
+const ProductItem = ({ id, name, image, description, price }) => {
   const [priceComma, setPriceComma] = useState(price);
   const [edit, setEdit] = useState(false);
   const user = JSON.parse(localStorage.getItem('user'));
@@ -158,7 +158,7 @@ function ProductItem({ id, name, image, description, price }) {
       )}
     </div>
   );
-}
+};
 
 ProductItem.propTypes = {
   id: PropTypes.string.isRequired,

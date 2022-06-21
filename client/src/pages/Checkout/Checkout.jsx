@@ -6,13 +6,13 @@ import PropTypes from 'prop-types';
 import LoadingButton from '@mui/lab/LoadingButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-import CheckoutItem from '../../components/CheckoutItem';
+import CheckoutItem from './CheckoutItem';
 import { allCheckout } from '../../store/actions/checkout';
 
-import './styles/Checkout.scss';
+import './Checkout.scss';
 
 // eslint-disable-next-line no-shadow
-function Checkout({ allCheckout, checkout }) {
+const Checkout = ({ allCheckout, checkout }) => {
   const [totalCost, setTotalCost] = useState(0);
   const [loading, setLoading] = useState(false);
   const handlePrice = (price) => {
@@ -65,7 +65,7 @@ function Checkout({ allCheckout, checkout }) {
       </div>
     </div>
   );
-}
+};
 const mapStateToProps = (state) => ({
   checkout: state.checkout.items,
 });

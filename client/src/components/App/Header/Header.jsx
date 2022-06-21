@@ -6,11 +6,11 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import IconButton from '@mui/material/IconButton';
 
-import { addSearch } from '../store/actions/search';
+import { addSearch } from '../../../store/actions/search';
 
-import './styles/Header.scss';
+import './Header.scss';
 
-function Header() {
+const Header = () => {
   const checkout = useSelector((state) => state.checkout.items);
   const { isLoggedIn } = useSelector((state) => state.auth);
   const searchInput = useRef();
@@ -74,6 +74,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

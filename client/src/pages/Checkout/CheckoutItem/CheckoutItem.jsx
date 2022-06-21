@@ -14,9 +14,9 @@ import {
 
 import { addMessage } from '../../../store/actions/message';
 
-import './styles/CheckoutItem.scss';
+import './CheckoutItem.scss';
 
-function CheckoutItem({ id, name, description, unitCost, countCh }) {
+const CheckoutItem = ({ id, name, description, unitCost, countCh }) => {
   const countInput = useRef();
   const [count, setCount] = useState(countCh);
   const [totalTemp, setTotalTemp] = useState(unitCost * countCh);
@@ -71,7 +71,7 @@ function CheckoutItem({ id, name, description, unitCost, countCh }) {
       </div>
     </div>
   );
-}
+};
 
 CheckoutItem.propTypes = {
   id: PropTypes.string.isRequired,

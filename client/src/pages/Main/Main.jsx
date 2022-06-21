@@ -9,9 +9,9 @@ import SearchPart from './SearchPart';
 import Sidebar from './Sidebar';
 import Feed from './Feed';
 
-import './styles/Main.scss';
+import './Main.scss';
 
-function Main() {
+const Main = () => {
   const searchID = useLocation().search;
   const name = new URLSearchParams(searchID).get('value');
 
@@ -43,6 +43,6 @@ function Main() {
       </div>
     </div>
   );
-}
+};
 
 export default Main;

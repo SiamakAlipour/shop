@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
 
-function AuthVerify({ history, logOut }) {
+const AuthVerify = ({ history, logOut }) => {
   history.listen(() => {
     const user = JSON.parse(localStorage.getItem('user'));
     if (user) {
@@ -15,7 +15,7 @@ function AuthVerify({ history, logOut }) {
   });
 
   return <div />;
-}
+};
 
 AuthVerify.propTypes = {
   logOut: PropTypes.func.isRequired,

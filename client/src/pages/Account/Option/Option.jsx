@@ -2,13 +2,14 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import ProductAdd from '../../../container/Options/ProductAdd';
-import Profile from '../../../container/Options/Profile';
-import UsersManage from '../../../container/Options/UsersManage';
+import ProductAdd from './ProductAdd';
+import Profile from './Profile';
+import UsersManage from './UsersManage';
 
-import './styles/Option.scss';
+import './Option.scss';
 
-function Option({ option }) {
+// eslint-disable-next-line consistent-return
+const Option = ({ option }) => {
   if (option === 0) {
     return (
       <div className="option">
@@ -30,7 +31,7 @@ function Option({ option }) {
       </div>
     );
   }
-}
+};
 
 Option.propTypes = {
   option: PropTypes.number.isRequired,

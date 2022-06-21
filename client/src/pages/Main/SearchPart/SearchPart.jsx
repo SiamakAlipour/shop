@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { allProducts } from '../store/actions/product';
+import { allProducts } from '../../../store/actions/product';
 
-import Product from './Product';
-import './styles/SearchPart.scss';
+import Product from '../../../components/shared/Product/Product';
+
+import './SearchPart.scss';
 
 // eslint-disable-next-line no-shadow
-function SearchPart({ product, allProducts }) {
+const SearchPart = ({ product, allProducts }) => {
   const search = useSelector((state) => state.search);
   const [searchList, setSearchList] = useState([]);
   useEffect(() => {
@@ -30,7 +31,7 @@ function SearchPart({ product, allProducts }) {
       </div>
     </div>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   product: state.product.items,

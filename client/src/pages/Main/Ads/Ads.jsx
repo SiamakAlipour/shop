@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import './styles/Ads.scss';
+import './Ads.scss';
 
 function Ads({ image, url = '#' }) {
   return (

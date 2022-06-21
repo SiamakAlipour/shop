@@ -18,7 +18,7 @@ import './UsersManage.scss';
 const users = axios.create({
   baseURL: 'http://127.0.0.1:8001/api/users',
 });
-function UsersManage() {
+const UsersManage = () => {
   const username = useRef();
   const password = useRef();
   const email = useRef();
@@ -187,6 +187,6 @@ function UsersManage() {
       </div>
     </div>
   );
-}
+};
 
 export default UsersManage;

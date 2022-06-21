@@ -6,11 +6,11 @@ import PropTypes from 'prop-types';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import IconButton from '@mui/material/IconButton';
 
-import { removeMessage } from '../store/actions/message';
+import { removeMessage } from '../../../store/actions/message';
 
-import './styles/Message.scss';
+import './Message.scss';
 
-function Message({ info, message }) {
+const Message = ({ info, message }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     clearTimeout();
@@ -27,7 +27,7 @@ function Message({ info, message }) {
     );
   }
   return null;
-}
+};
 
 Message.propTypes = {
   info: PropTypes.string.isRequired,

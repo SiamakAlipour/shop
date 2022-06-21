@@ -8,15 +8,15 @@ import axios from 'axios';
 
 import { TextField, Button } from '@mui/material';
 
-import { addMessage } from '../../store/actions/message';
-import { logout } from '../../store/actions/auth';
+import { addMessage } from '../../../../store/actions/message';
+import { logout } from '../../../../store/actions/auth';
 
 import './Profile.scss';
 
 const userEdit = axios.create({
   baseURL: 'http://127.0.0.1:8001/api/users',
 });
-function Profile() {
+const Profile = () => {
   const user = JSON.parse(localStorage.getItem('user'));
   const [disable, setDisable] = useState(true);
 
@@ -131,6 +131,6 @@ function Profile() {
       </Formik>
     </div>
   );
-}
+};
 
 export default Profile;

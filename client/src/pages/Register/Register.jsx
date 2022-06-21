@@ -8,9 +8,9 @@ import { Formik, Form, Field } from 'formik';
 
 import { register } from '../../store/actions/auth';
 
-import './styles/Register.scss';
+import './Register.scss';
 
-function Register() {
+const Register = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const handleRegister = (value) => {
@@ -126,6 +126,6 @@ function Register() {
       </div>
     </div>
   );
-}
+};
 
 export default Register;

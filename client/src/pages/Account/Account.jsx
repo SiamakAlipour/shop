@@ -3,15 +3,15 @@
 import React, { useState } from 'react';
 
 import { Link, Redirect } from 'react-router-dom';
-import { useSelector, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Option from './Option';
 import { userService } from '../../service/user.service';
 
-import './styles/Account.scss';
+import './Account.scss';
 
-function Account({ isLoggedIn, user }) {
+const Account = ({ isLoggedIn, user }) => {
   const [option, setOption] = useState(2);
   const parseJwt = (token) => {
     try {
@@ -66,7 +66,7 @@ function Account({ isLoggedIn, user }) {
       </div>
     </div>
   );
-}
+};
 const mapStateToProps = (state) => {
   const { isLoggedIn, user } = state.auth;
   return {
