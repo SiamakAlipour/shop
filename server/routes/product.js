@@ -1,8 +1,8 @@
-import express from 'express'
-import Product from '../models/Product.js'
-import { upload } from './upload'
+import express from 'express';
+import Product from '../models/Product.js';
+import { upload } from './upload';
 
-export const router = express.Router()
+export const router = express.Router();
 
 // Add product
 router.post('/', upload.single('image'), async (req, res) => {
@@ -12,52 +12,52 @@ router.post('/', upload.single('image'), async (req, res) => {
 		price: req.body.price,
 
 		image: req.file.filename,
-	})
+	});
 	try {
-		const newProduct = await product.save()
-		res.status(200).json(newProduct)
+		const newProduct = await product.save();
+		res.status(200).json(newProduct);
 	} catch (error) {
 		res.status(400).json({
 			error,
-		})
+		});
 	}
-})
+});
 
 // get all products
 router.get('/', async (req, res) => {
 	try {
-		const products = await Product.find()
-		res.status(200).json(products)
+		const products = await Product.find();
+		res.status(200).json(products);
 	} catch (error) {
 		res.status(400).json({
 			error,
-		})
+		});
 	}
-})
+});
 // get a product
 router.get('/:id', async (req, res) => {
-	const productId = req.params.id
+	const productId = req.params.id;
 	try {
-		const product = await Product.findById(productId)
-		res.status(200).json(product)
+		const product = await Product.findById(productId);
+		res.status(200).json(product);
 	} catch (error) {
 		res.status(400).json({
 			error,
-		})
+		});
 	}
-})
+});
 
 //  remove a product
 router.delete('/:id', async (req, res) => {
 	try {
-		const removedProduct = await Product.remove({ _id: req.params.id })
-		res.status(200).json(removedProduct)
+		const removedProduct = await Product.remove({ _id: req.params.id });
+		res.status(200).json(removedProduct);
 	} catch (error) {
 		res.status(400).json({
 			error,
-		})
+		});
 	}
-})
+});
 
 // update a product
 router.patch('/:id', upload.single('image'), async (req, res) => {
@@ -72,11 +72,11 @@ router.patch('/:id', upload.single('image'), async (req, res) => {
 					price: req.body.price,
 				},
 			}
-		)
-		res.status(200).json(updatedPost)
+		);
+		res.status(200).json(updatedPost);
 	} catch (error) {
 		res.status(400).json({
 			error,
-		})
+		});
 	}
-})
+});

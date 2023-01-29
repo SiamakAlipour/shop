@@ -21,8 +21,7 @@ router.post('/register', async (req, res) => {
 	const checkUsernameExist = await User.findOne({
 		username: username.toLowerCase(),
 	});
-	if (checkUsernameExist)
-		return res.status(400).send('Username already exist');
+	if (checkUsernameExist) return res.status(400).send('Username already exist');
 	// check if email is already in DB
 	const checkEmailExist = await User.findOne({
 		email: email.toLowerCase(),
@@ -51,6 +50,7 @@ router.post('/register', async (req, res) => {
 
 router.post('/login', async (req, res) => {
 	// request body destructuring
+	console.log(req.body);
 	const { username, password } = req.body;
 	// Validation
 	const { error } = loginValidation(req.body);
@@ -184,8 +184,7 @@ router.patch('/checkout/:id/:checkoutID', async (req, res) => {
 		.then((user) => {
 			const checkout = user.checkout.id(checkoutID); // returns a matching subdocument
 			name = name == null ? checkout.name : name;
-			description =
-				description == null ? checkout.description : description;
+			description = description == null ? checkout.description : description;
 			unitPrice = unitPrice == null ? checkout.unitPrice : unitPrice;
 			count = count == null ? checkout.count : count;
 			checkout.set({
