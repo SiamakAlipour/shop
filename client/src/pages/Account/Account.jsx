@@ -46,8 +46,8 @@ const Account = ({ isLoggedIn, user }) => {
             <li>خانه</li>
           </Link>
           <li onClick={() => setOption(2)}>پروفایل</li>
-          {user.admin ? <li onClick={() => setOption(0)}>اضافه کردن کالا</li> : null}
-          {user.admin ? <li onClick={() => setOption(1)}>مدیریت کاربران</li> : null}
+          {user?.admin ? <li onClick={() => setOption(0)}>اضافه کردن کالا</li> : null}
+          {user?.admin ? <li onClick={() => setOption(1)}>مدیریت کاربران</li> : null}
           <Link to="/checkout">
             <li>سبد خرید</li>
           </Link>

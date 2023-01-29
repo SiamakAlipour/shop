@@ -50,7 +50,7 @@ router.get('/:id', async (req, res) => {
 //  remove a product
 router.delete('/:id', async (req, res) => {
 	try {
-		const removedProduct = await Product.remove({ _id: req.params.id });
+		const removedProduct = await Product.deleteOne({ _id: req.params.id });
 		res.status(200).json(removedProduct);
 	} catch (error) {
 		res.status(400).json({
