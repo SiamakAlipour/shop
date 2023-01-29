@@ -3,7 +3,7 @@ import './Footer.scss';
 
 const Footer = () => (
   <div className="footer">
-    <p> 1400 &copy;</p>
+    <p> 1401 &copy;</p>
   </div>
 );
 

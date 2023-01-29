@@ -87,7 +87,7 @@ const ProductItem = ({ id, name, image, description, price }) => {
   };
   return (
     <div className="productItem">
-      {user.admin && (
+      {user?.admin && (
         <div className="productItem__admin">
           {!edit ? (
             <>

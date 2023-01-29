@@ -14,11 +14,12 @@ const AuthVerify = ({ history, logOut }) => {
     }
   });
 
-  return <div />;
+  return <></>;
 };
 
 AuthVerify.propTypes = {
   logOut: PropTypes.func.isRequired,
-  history: PropTypes.objectOf({ listen: PropTypes.func }).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  history: PropTypes.any.isRequired,
 };
 export default withRouter(AuthVerify);

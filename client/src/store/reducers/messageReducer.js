@@ -1,6 +1,6 @@
 import { MESSAGE_ADD, MESSAGE_REMOVE } from '../actions/types';
 
-const initialState = [null, null];
+const initialState = ['', ''];
 
 const messageReducer = (state = initialState, action) => {
   const { type, payload } = action;

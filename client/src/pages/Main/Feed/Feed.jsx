@@ -98,7 +98,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 Feed.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  product: PropTypes.object.isRequired,
+  product: PropTypes.array.isRequired,
   allProducts: PropTypes.func.isRequired,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Feed);
