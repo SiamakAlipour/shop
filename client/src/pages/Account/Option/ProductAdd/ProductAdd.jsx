@@ -17,8 +17,6 @@ const ProductAdd = () => {
     setSelectedFile(e.currentTarget.files[0]);
   };
   const handleUpload = (value, { resetForm }) => {
-    console.log(value);
-    console.log(selectedFile);
     const formData = new FormData();
 
     formData.append('image', selectedFile, selectedFile.name);

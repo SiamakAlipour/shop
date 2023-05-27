@@ -8,7 +8,9 @@ import ProductItem from './ProductItem';
 import './Product.scss';
 
 const Product = ({ currentPosts }) => {
-  React.useEffect(() => {}, [currentPosts]);
+  React.useEffect(() => {
+    console.log(currentPosts);
+  }, [currentPosts]);
   return (
     <div className="product">
       {currentPosts.map((product) => (

@@ -93,13 +93,13 @@ const UsersManage = () => {
       <div className="usersManage__usersList">
         {search
           ? searchList.map((u) => (
-              <div className="usersManage__item" key={u._id} onClick={() => handleUsers(user)}>
-                {user.username}
+              <div className="usersManage__item" key={u._id} onClick={() => handleUsers(u)}>
+                {u.username}
               </div>
             ))
           : usersList.map((u) => (
-              <div className="usersManage__item" key={u._id} onClick={() => handleUsers(user)}>
-                {user.username}
+              <div className="usersManage__item" key={u._id} onClick={() => handleUsers(u)}>
+                {u.username}
               </div>
             ))}
         <Rodal visible={visible} onClose={hide} animation="fade" className="usersManage__modal">

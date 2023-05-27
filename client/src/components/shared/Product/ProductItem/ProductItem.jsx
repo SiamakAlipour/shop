@@ -36,10 +36,13 @@ const ProductItem = ({ id, name, image, description, price }) => {
     setSelectedFile(e.currentTarget.files[0]);
   };
   const handleEdit = (e) => {
+    console.log('test');
     e.preventDefault();
     setEdit(true);
     const formData = new FormData();
+
     formData.append('image', selectedFile, selectedFile.name);
+
     formData.append('name', nameInput.current.value);
     formData.append('description', descriptionInput.current.value);
     formData.append('price', priceInput.current.value);
@@ -121,7 +124,7 @@ const ProductItem = ({ id, name, image, description, price }) => {
         </>
       ) : (
         <div className="productItem__content">
-          <form action="" onSubmit={handleEdit}>
+          <form action="">
             <input
               type="text"
               placeholder={name}
@@ -138,6 +141,7 @@ const ProductItem = ({ id, name, image, description, price }) => {
             />
             <input
               type="file"
+              name="image"
               placeholder="عکس کالا"
               className="form-control"
               onChange={handleFile}
@@ -150,7 +154,7 @@ const ProductItem = ({ id, name, image, description, price }) => {
               ref={priceInput}
               required
             />
-            <button type="button" className="btn btn-primary">
+            <button type="button" className="btn btn-primary" onClick={handleEdit}>
               ویرایش
             </button>
           </form>
